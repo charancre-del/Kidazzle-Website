@@ -83,7 +83,7 @@
 		</nav>
 
 		<!-- CTA Button -->
-		<a href="<?php echo esc_url( home_url( '/contact#tour' ) ); ?>" class="hidden sm:inline-flex items-center gap-2 bg-brand-ink text-white text-xs font-semibold tracking-[0.2em] px-5 py-3 rounded-full shadow-soft hover:bg-chroma-blueDark">
+		<a href="<?php echo esc_url( get_theme_mod( 'chroma_book_tour_url', home_url( '/contact#tour' ) ) ); ?>" class="hidden sm:inline-flex items-center gap-2 bg-brand-ink text-white text-xs font-semibold tracking-[0.2em] px-5 py-3 rounded-full shadow-soft hover:bg-chroma-blueDark">
 			Book A Tour
 		</a>
 
@@ -141,7 +141,7 @@
 			<a href="<?php echo esc_url( home_url( '/locations' ) ); ?>" class="block hover:text-chroma-blue transition">Locations</a>
 			<a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="block hover:text-chroma-blue transition">Contact</a>
 
-			<a href="<?php echo esc_url( home_url( '/contact#tour' ) ); ?>" class="block bg-brand-ink text-white text-center py-3 rounded-2xl shadow-soft hover:bg-chroma-blueDark transition mt-4">
+			<a href="<?php echo esc_url( get_theme_mod( 'chroma_book_tour_url', home_url( '/contact#tour' ) ) ); ?>" class="block bg-brand-ink text-white text-center py-3 rounded-2xl shadow-soft hover:bg-chroma-blueDark transition mt-4">
 				Book A Tour
 			</a>
 		</nav>
