@@ -37,6 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
+   * Mobile Dropdown (About Us accordion)
+   */
+  const mobileDropdowns = document.querySelectorAll('[data-mobile-dropdown]');
+  mobileDropdowns.forEach((dropdown) => {
+    const toggle = dropdown.querySelector('[data-mobile-dropdown-toggle]');
+    const content = dropdown.querySelector('[data-mobile-dropdown-content]');
+    const icon = dropdown.querySelector('[data-mobile-dropdown-icon]');
+
+    if (toggle && content) {
+      toggle.addEventListener('click', () => {
+        const isOpen = !content.classList.contains('hidden');
+
+        if (isOpen) {
+          content.classList.add('hidden');
+          icon?.classList.remove('rotate-180');
+        } else {
+          content.classList.remove('hidden');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    }
+  });
+
+  /**
    * Accordions
    */
   const accordions = document.querySelectorAll('[data-accordion]');

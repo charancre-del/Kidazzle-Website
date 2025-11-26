@@ -58,7 +58,28 @@
 
 		<!-- Desktop Navigation -->
 		<nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-brand-ink/70">
-			<?php chroma_primary_nav(); ?>
+			<a href="<?php echo esc_url( home_url( '/' . chroma_get_program_base_slug() ) ); ?>" class="hover:text-chroma-blue transition">Programs</a>
+
+			<!-- About Us Dropdown -->
+			<div class="relative group" data-dropdown>
+				<button class="hover:text-chroma-blue transition flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+					About Us
+					<svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+					</svg>
+				</button>
+				<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-chroma-blue/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+					<div class="py-2">
+						<a href="<?php echo esc_url( home_url( '/about#our-story' ) ); ?>" class="block px-4 py-2 text-sm text-brand-ink hover:bg-chroma-blueLight hover:text-chroma-blue transition">Our Story</a>
+						<a href="<?php echo esc_url( home_url( '/about#chroma-standard' ) ); ?>" class="block px-4 py-2 text-sm text-brand-ink hover:bg-chroma-blueLight hover:text-chroma-blue transition">The Chroma Standard</a>
+						<a href="<?php echo esc_url( home_url( '/about#leadership' ) ); ?>" class="block px-4 py-2 text-sm text-brand-ink hover:bg-chroma-blueLight hover:text-chroma-blue transition">Leadership</a>
+						<a href="<?php echo esc_url( home_url( '/about#giving-back' ) ); ?>" class="block px-4 py-2 text-sm text-brand-ink hover:bg-chroma-blueLight hover:text-chroma-blue transition">Giving Back</a>
+					</div>
+				</div>
+			</div>
+
+			<a href="<?php echo esc_url( home_url( '/locations' ) ); ?>" class="hover:text-chroma-blue transition">Locations</a>
+			<a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="hover:text-chroma-blue transition">Contact</a>
 		</nav>
 
 		<!-- CTA Button -->
@@ -99,7 +120,27 @@
 			<button data-mobile-nav-toggle class="text-3xl text-brand-ink" aria-label="Close menu">×</button>
 		</div>
 		<nav class="flex-1 px-6 py-6 text-lg font-semibold text-brand-ink space-y-6">
-			<?php chroma_primary_nav(); ?>
+			<a href="<?php echo esc_url( home_url( '/' . chroma_get_program_base_slug() ) ); ?>" class="block hover:text-chroma-blue transition">Programs</a>
+
+			<!-- About Us Accordion (Mobile) -->
+			<div data-mobile-dropdown>
+				<button class="w-full flex items-center justify-between hover:text-chroma-blue transition" data-mobile-dropdown-toggle>
+					<span>About Us</span>
+					<svg class="w-5 h-5 transition-transform" data-mobile-dropdown-icon fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+					</svg>
+				</button>
+				<div class="hidden mt-2 ml-4 space-y-2" data-mobile-dropdown-content>
+					<a href="<?php echo esc_url( home_url( '/about#our-story' ) ); ?>" class="block text-base text-brand-ink/70 hover:text-chroma-blue transition">Our Story</a>
+					<a href="<?php echo esc_url( home_url( '/about#chroma-standard' ) ); ?>" class="block text-base text-brand-ink/70 hover:text-chroma-blue transition">The Chroma Standard</a>
+					<a href="<?php echo esc_url( home_url( '/about#leadership' ) ); ?>" class="block text-base text-brand-ink/70 hover:text-chroma-blue transition">Leadership</a>
+					<a href="<?php echo esc_url( home_url( '/about#giving-back' ) ); ?>" class="block text-base text-brand-ink/70 hover:text-chroma-blue transition">Giving Back</a>
+				</div>
+			</div>
+
+			<a href="<?php echo esc_url( home_url( '/locations' ) ); ?>" class="block hover:text-chroma-blue transition">Locations</a>
+			<a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="block hover:text-chroma-blue transition">Contact</a>
+
 			<a href="<?php echo esc_url( home_url( '/contact#tour' ) ); ?>" class="block bg-brand-ink text-white text-center py-3 rounded-2xl shadow-soft hover:bg-chroma-blueDark transition mt-4">
 				Book A Tour
 			</a>
