@@ -95,12 +95,13 @@ Comprehensive audit of the Chroma Excellence WordPress theme comparing all templ
 
 **Homepage** ⭐⭐⭐⭐☆
 - 7/10 sections perfect or excellent
-- **2 critical issues:**
+- **3 critical issues:**
   1. Stats strip - all red instead of varied colors
   2. Missing hero video file
+  3. Schedule tabs - missing classroom images (Programs lack featured images)
 - **5 medium issues:**
-  3-5. Schedule Tabs color variations
-  6-7. Locations Preview grid/hover colors
+  4-6. Schedule Tabs color variations
+  7-8. Locations Preview grid/hover colors
 - Assessment: **Very Good** (will be excellent after fixes)
 
 ---
@@ -154,7 +155,7 @@ Comprehensive audit of the Chroma Excellence WordPress theme comparing all templ
 
 ## ALL ISSUES FOUND
 
-### 🔴 CRITICAL (2) - Homepage Only
+### 🔴 CRITICAL (3) - Homepage Only
 
 **Issue 1: Stats Strip Color Mismatch**
 - **File:** `template-parts/home/stats-strip.php:19`
@@ -173,11 +174,23 @@ Comprehensive audit of the Chroma Excellence WordPress theme comparing all templ
 - **Effort:** 2 minutes (upload) or instant (featured image)
 - **Impact:** Homepage visual completeness
 
+**Issue 3: Schedule Tab Images Missing** 🆕
+- **File:** `template-parts/home/schedule-tabs.php:64-69`
+- **Root Cause:** Program posts don't have featured images set
+- **Problem:** Code checks for `$track['image']` (from `get_the_post_thumbnail_url()`) but Programs have no featured images
+- **Current State:** Shows placeholder icon (`fa-image`) instead of classroom photos
+- **Expected:** Each tab shows classroom photo (Infant, Toddler, Pre-K, etc.)
+- **HTML Reference:** Uses classroom photos (lines 384, 419, 454)
+- **Fix:** Set featured images on 3-6 Program posts
+- **Effort:** 10-15 minutes (upload photos, assign to programs)
+- **Impact:** Schedule tabs missing key visual content
+- **Detailed Report:** See `AUDIT-2-IMAGE-LOADING-ISSUES.md`
+
 ---
 
 ### 🟡 MEDIUM (5) - Homepage Only
 
-**Issues 3-5: Schedule Tabs Color Variations**
+**Issues 4-6: Schedule Tabs Color Variations**
 - **Files:** `template-parts/home/schedule-tabs.php` (lines 52, 55, 57)
 - **Problem:** Hardcoded colors instead of varying per track
 - **Impact:** Loss of visual color-coding
@@ -185,7 +198,7 @@ Comprehensive audit of the Chroma Excellence WordPress theme comparing all templ
 - **Effort:** 15 minutes if fixing
 - **Priority:** Optional
 
-**Issues 6-7: Locations Preview**
+**Issues 7-8: Locations Preview**
 - **File:** `template-parts/home/locations-preview.php` (lines 60, 77)
 - **Problems:**
   - Grid uses 3 columns instead of 4
@@ -199,7 +212,7 @@ Comprehensive audit of the Chroma Excellence WordPress theme comparing all templ
 
 ### 🟢 LOW (1) - About Page
 
-**Issue 8: Undefined Color**
+**Issue 9: Undefined Color**
 - **File:** `page-about.php:350`
 - **Problem:** `text-chroma-orange` not in Tailwind config
 - **Impact:** Icon displays without color
@@ -385,21 +398,28 @@ Homepage issues likely from early development. Later pages show learning and imp
 - **Priority:** HIGH
 - **Effort:** EASY
 
+**3. Add Schedule Tab Images** ⏱️ 10-15 minutes 🆕
+- Upload 3-6 classroom photos to Media Library
+- Set as featured images on Program posts (Infant, Toddler, Pre-K, etc.)
+- **Priority:** HIGH
+- **Effort:** EASY
+- **Detail:** See `AUDIT-2-IMAGE-LOADING-ISSUES.md` for step-by-step guide
+
 ### Optional (Quality Improvements)
 
-**3. Fix Schedule Tabs Colors** ⏱️ 15 minutes
+**4. Fix Schedule Tabs Colors** ⏱️ 15 minutes
 - Add color field to track array
 - Apply colors to timeline, badges, titles
 - **Priority:** MEDIUM
 - **Effort:** MODERATE
 
-**4. Fix Locations Preview** ⏱️ 10 minutes
+**5. Fix Locations Preview** ⏱️ 10 minutes
 - Change grid to `lg:grid-cols-4`
 - Add per-region hover colors
 - **Priority:** MEDIUM
 - **Effort:** EASY
 
-**5. Add chroma-orange Color** ⏱️ 2 minutes
+**6. Add chroma-orange Color** ⏱️ 2 minutes
 - Add to `tailwind.config.js`
 - OR change About page icon to existing color
 - **Priority:** LOW
@@ -407,19 +427,19 @@ Homepage issues likely from early development. Later pages show learning and imp
 
 ### Future Enhancements
 
-**6. Documentation** ⏱️ 2-3 hours
+**7. Documentation** ⏱️ 2-3 hours
 - Meta box field documentation
 - Theme setup guide
 - Customizer settings reference
 - Developer documentation
 
-**7. Performance Optimization** ⏱️ 4-6 hours
+**8. Performance Optimization** ⏱️ 4-6 hours
 - Image optimization
 - Lazy loading
 - Caching implementation
 - Database query optimization
 
-**8. SEO Enhancement** ⏱️ 2-3 hours
+**9. SEO Enhancement** ⏱️ 2-3 hours
 - Schema.org markup
 - Open Graph tags
 - Twitter cards
@@ -442,8 +462,9 @@ Homepage issues likely from early development. Later pages show learning and imp
 **⚠️ Fix Before Launch:**
 - Homepage stats colors (5 min)
 - Hero video or featured image (2 min)
+- Schedule tab images (10-15 min) 🆕
 
-**After These 2 Fixes: 100% Production Ready**
+**After These 3 Fixes: 100% Production Ready**
 
 ---
 
@@ -493,12 +514,12 @@ The **Chroma Excellence WordPress theme** is an **exceptionally well-built** cus
 - ✅ Professional polish throughout
 
 **Areas for Improvement:**
-- ⚠️ 2 Homepage critical issues (easily fixable)
+- ⚠️ 3 Homepage critical issues (easily fixable)
 - ⚠️ 5 Homepage medium issues (optional)
 - ⚠️ 1 About page cosmetic issue (optional)
 
 **Verdict:**
-**Production-ready after 7 minutes of fixes** (stats colors + video/image)
+**Production-ready after 17-22 minutes of fixes** (stats colors + video/image + schedule tab images)
 
 All optional issues are refinements that don't impact functionality or user experience significantly.
 
@@ -508,19 +529,19 @@ All optional issues are refinements that don't impact functionality or user expe
 
 ### For Immediate Launch
 
-1. **Fix 2 Critical Issues** (7 minutes total)
+1. **Fix 3 Critical Issues** (17-22 minutes total) 🆕
 2. **Test Homepage** (5 minutes)
 3. **Deploy to Production** ✅
 
-**Total Time to Production: 12 minutes**
+**Total Time to Production: 22-27 minutes**
 
 ### For Perfect Score
 
-4. **Fix All 8 Issues** (44 minutes total)
+4. **Fix All 9 Issues** (54-59 minutes total) 🆕
 5. **Add Documentation** (2-3 hours)
 6. **Final QA Testing** (1 hour)
 
-**Total Time to Perfection: ~5 hours**
+**Total Time to Perfection: ~5-6 hours**
 
 ---
 
@@ -534,7 +555,8 @@ All detailed reports available:
 4. ✅ **AUDIT-2-PROGRAMS-PAGES.md** - Programs Archive & Single
 5. ✅ **AUDIT-2-LOCATIONS-PAGES.md** - Locations Archive & Single
 6. ✅ **AUDIT-2-REMAINING-PAGES.md** - Pattern analysis
-7. ✅ **AUDIT-2-FINAL-COMPREHENSIVE-SUMMARY.md** - This document
+7. ✅ **AUDIT-2-IMAGE-LOADING-ISSUES.md** - Image/video loading investigation 🆕
+8. ✅ **AUDIT-2-FINAL-COMPREHENSIVE-SUMMARY.md** - This document
 
 ---
 
@@ -545,5 +567,5 @@ All detailed reports available:
 ---
 
 **Theme Assessment: ⭐⭐⭐⭐⭐ EXCELLENT (92/100)**
-**Production Ready: YES** (after 7 minutes of fixes)
+**Production Ready: YES** (after 17-22 minutes of fixes)
 **Recommended Action: FIX → TEST → DEPLOY**
