@@ -499,37 +499,128 @@ function chroma_home_curriculum_profiles() {
 }
 
 /**
- * Daily schedule tracks
+ * Daily schedule tracks - Pull from Program CPT
  */
 function chroma_home_schedule_tracks() {
-        $tracks = chroma_home_get_theme_mod_json( 'chroma_home_schedule_tracks_json', chroma_home_default_schedule_tracks() );
+        // Query all published programs with schedule data
+        $programs = new WP_Query( array(
+                'post_type'      => 'program',
+                'posts_per_page' => -1,
+                'orderby'        => 'menu_order',
+                'order'          => 'ASC',
+                'post_status'    => 'publish',
+                'meta_query'     => array(
+                        array(
+                                'key'     => 'program_schedule_items',
+                                'compare' => '!=',
+                                'value'   => '',
+                        ),
+                ),
+        ) );
 
-        return array_map(
-                function ( $track ) {
-                        $steps = array_map(
-                                function ( $step ) {
-                                        return array(
-                                                'time'  => sanitize_text_field( $step['time'] ?? '' ),
-                                                'title' => sanitize_text_field( $step['title'] ?? '' ),
-                                                'copy'  => sanitize_textarea_field( $step['copy'] ?? '' ),
+        if ( ! $programs->have_posts() ) {
+                // Fallback to theme mod/defaults if no programs have schedule data
+                $tracks = chroma_home_get_theme_mod_json( 'chroma_home_schedule_tracks_json', chroma_home_default_schedule_tracks() );
+
+                return array_map(
+                        function ( $track ) {
+                                $steps = array_map(
+                                        function ( $step ) {
+                                                return array(
+                                                        'time'  => sanitize_text_field( $step['time'] ?? '' ),
+                                                        'title' => sanitize_text_field( $step['title'] ?? '' ),
+                                                        'copy'  => sanitize_textarea_field( $step['copy'] ?? '' ),
+                                                );
+                                        },
+                                        $track['steps'] ?? array()
+                                );
+
+                                return array(
+                                        'key'         => sanitize_title( $track['key'] ?? '' ),
+                                        'label'       => sanitize_text_field( $track['label'] ?? '' ),
+                                        'title'       => sanitize_text_field( $track['title'] ?? '' ),
+                                        'description' => sanitize_textarea_field( $track['description'] ?? '' ),
+                                        'color'       => sanitize_text_field( $track['color'] ?? '' ),
+                                        'background'  => sanitize_text_field( $track['background'] ?? '' ),
+                                        'image'       => esc_url_raw( $track['image'] ?? '' ),
+                                        'steps'       => $steps,
+                                );
+                        },
+                        $tracks
+                );
+        }
+
+        // Build tracks from program posts
+        $tracks = array();
+        while ( $programs->have_posts() ) {
+                $programs->the_post();
+                $post_id = get_the_ID();
+
+                // Get program meta
+                $anchor_slug     = get_post_meta( $post_id, 'program_anchor_slug', true ) ?: get_post_field( 'post_name', $post_id );
+                $schedule_title  = get_post_meta( $post_id, 'program_schedule_title', true );
+                $schedule_items  = get_post_meta( $post_id, 'program_schedule_items', true );
+                $color_scheme    = get_post_meta( $post_id, 'program_color_scheme', true ) ?: 'blue';
+
+                // Get program title and excerpt for label and description
+                $program_title = get_the_title();
+                $description   = get_the_excerpt() ?: '';
+
+                // Parse schedule items (format: Badge|Title|Description, one per line)
+                $steps = array();
+                if ( ! empty( $schedule_items ) ) {
+                        $lines = explode( "\n", $schedule_items );
+                        foreach ( $lines as $line ) {
+                                $line = trim( $line );
+                                if ( empty( $line ) ) {
+                                        continue;
+                                }
+
+                                $parts = explode( '|', $line );
+                                if ( count( $parts ) >= 3 ) {
+                                        $steps[] = array(
+                                                'time'  => sanitize_text_field( trim( $parts[0] ) ),
+                                                'title' => sanitize_text_field( trim( $parts[1] ) ),
+                                                'copy'  => sanitize_textarea_field( trim( $parts[2] ) ),
                                         );
-                                },
-                                $track['steps'] ?? array()
-                        );
+                                }
+                        }
+                }
 
-                        return array(
-                                'key'         => sanitize_title( $track['key'] ?? '' ),
-                                'label'       => sanitize_text_field( $track['label'] ?? '' ),
-                                'title'       => sanitize_text_field( $track['title'] ?? '' ),
-                                'description' => sanitize_textarea_field( $track['description'] ?? '' ),
-                                'color'       => sanitize_text_field( $track['color'] ?? '' ),
-                                'background'  => sanitize_text_field( $track['background'] ?? '' ),
-                                'image'       => esc_url_raw( $track['image'] ?? '' ),
-                                'steps'       => $steps,
-                        );
-                },
-                $tracks
-        );
+                // Skip if no valid steps
+                if ( empty( $steps ) ) {
+                        continue;
+                }
+
+                // Get featured image URL
+                $image_url = get_the_post_thumbnail_url( $post_id, 'large' );
+
+                // Map color scheme to Tailwind classes
+                $color_map = array(
+                        'red'      => array( 'color' => 'chroma-red', 'background' => 'bg-chroma-redLight' ),
+                        'blue'     => array( 'color' => 'chroma-blue', 'background' => 'bg-chroma-blueLight' ),
+                        'yellow'   => array( 'color' => 'chroma-yellow', 'background' => 'bg-chroma-yellowLight' ),
+                        'blueDark' => array( 'color' => 'chroma-blueDark', 'background' => 'bg-chroma-blueDark/10' ),
+                        'green'    => array( 'color' => 'chroma-green', 'background' => 'bg-chroma-greenLight' ),
+                );
+
+                $colors = $color_map[ $color_scheme ] ?? $color_map['blue'];
+
+                $tracks[] = array(
+                        'key'         => $anchor_slug,
+                        'label'       => $program_title,
+                        'title'       => $schedule_title ?: $program_title,
+                        'description' => $description,
+                        'color'       => $colors['color'],
+                        'background'  => $colors['background'],
+                        'image'       => $image_url ?: '',
+                        'steps'       => $steps,
+                );
+        }
+
+        wp_reset_postdata();
+
+        return $tracks;
 }
 
 /**
