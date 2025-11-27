@@ -160,6 +160,66 @@ chroma: {
 }
 ```
 
+### Font Awesome Icons
+
+**Version:** Font Awesome 6.4.0 (Free)
+
+The theme loads Font Awesome from CDN via `inc/enqueue.php`:
+
+```php
+wp_enqueue_style(
+    'font-awesome',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+    array(),
+    '6.4.0'
+);
+```
+
+**Verify Icons Are Loading:**
+
+1. **Check Browser Console** - No 404 errors for Font Awesome CSS
+2. **Inspect Icon Element** - Should have classes like `fa-solid fa-heart`
+3. **Test Page** - Icons should display (not show as squares/blanks)
+
+**Common Icon Classes Used:**
+
+```html
+<!-- Solid Icons -->
+<i class="fa-solid fa-heart"></i>
+<i class="fa-solid fa-graduation-cap"></i>
+<i class="fa-solid fa-shapes"></i>
+<i class="fa-solid fa-shield-halved"></i>
+<i class="fa-solid fa-apple-whole"></i>
+<i class="fa-solid fa-image"></i>
+
+<!-- Brand Icons -->
+<i class="fa-brands fa-connectdevelop"></i>
+
+<!-- Regular Icons -->
+<i class="fa-regular fa-star"></i>
+```
+
+**Troubleshooting:**
+
+If icons don't show up:
+
+1. **Clear browser cache** (Ctrl+Shift+R / Cmd+Shift+R)
+2. **Check CDN is accessible** - Visit: `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css`
+3. **Verify enqueue is running** - View page source, search for "font-awesome"
+4. **Check for CSS conflicts** - Inspect element, look for `font-family` override
+
+**Self-Hosting (Optional):**
+
+To avoid CDN dependency:
+
+```bash
+# Download Font Awesome
+cd chroma-excellence-theme/assets
+mkdir fonts
+# Download and extract Font Awesome 6.4.0
+# Update enqueue.php to use local path
+```
+
 ### ACF Field Groups
 
 Legacy ACF JSON files remain for reference, but the theme no longer requires the plugin.
