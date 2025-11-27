@@ -58,9 +58,9 @@ if ( empty( $tracks ) ) {
                                                 <div class="space-y-6 relative">
                                                         <div class="absolute left-[19px] top-2 bottom-2 w-0.5 <?php echo esc_attr( $timeline_color ); ?>"></div>
                                                         <?php foreach ( $track['steps'] as $step ) : ?>
-                                                                <div class="grid grid-cols-[160px,1fr] gap-6 items-start">
-                                                                        <div class="w-max px-4 h-10 rounded-full bg-white <?php echo esc_attr( $badge_color ); ?> flex items-center justify-center shadow-sm relative z-10 text-xs font-bold flex-shrink-0"><?php echo esc_html( $step['time'] ); ?></div>
-                                                                        <div class="pt-2">
+                                                                <div class="flex gap-6 items-start">
+                                                                        <div class="w-36 h-10 px-2 rounded-full bg-white <?php echo esc_attr( $badge_color ); ?> flex items-center justify-center shadow-sm relative z-10 text-xs font-bold flex-shrink-0"><?php echo esc_html( $step['time'] ); ?></div>
+                                                                        <div class="flex-1 pt-2">
                                                                                 <?php if ( ! empty( $step['title'] ) ) : ?>
                                                                                         <h4 class="font-bold <?php echo esc_attr( $title_color ); ?> mb-1"><?php echo esc_html( $step['title'] ); ?></h4>
                                                                                 <?php endif; ?>
