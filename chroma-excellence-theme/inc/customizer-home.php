@@ -121,7 +121,7 @@ $wp_customize->add_control( 'chroma_home_prismpath_cta_url', array( 'label' => _
 $wp_customize->add_setting(
 'chroma_home_prismpath_cards_json',
 array(
-'default'           => wp_json_encode( $prismpath['cards'] ),
+'default'           => wp_json_encode( $prismpath['cards'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ),
 'sanitize_callback' => 'chroma_home_sanitize_json_setting',
 )
 );
