@@ -468,10 +468,21 @@ function chroma_shared_meta_description()
                 // Blog Post Template: "[Title] - [Excerpt]"
                 $excerpt = has_excerpt() ? get_the_excerpt() : chroma_trimmed_excerpt(30, $post_id);
                 $description = get_the_title() . ' - ' . $excerpt;
+
+        } elseif (is_front_page()) {
+                // Homepage Template: Global Default > Tagline > Constructed Fallback
+                $description = chroma_global_seo_default_description();
+                if (empty($description)) {
+                        $description = get_bloginfo('description');
+                }
+                if (empty($description)) {
+                        $description = get_bloginfo('name') . ' offers premier child care, daycare, and early childhood education in the Metro Atlanta area.';
+                }
         }
 
         // 3. Global Default / Fallback
         if (empty($description)) {
+                echo "<!-- Debug: Description empty, trying global fallback -->\n";
                 // Preserve About page specific metadata if defined (legacy support)
                 if (function_exists('chroma_is_about_template') && function_exists('chroma_get_about_seo_fields') && chroma_is_about_template()) {
                         $about_fields = chroma_get_about_seo_fields();
@@ -491,6 +502,8 @@ function chroma_shared_meta_description()
 
         if ($description) {
                 echo '<meta name="description" content="' . esc_attr(wp_strip_all_tags($description)) . '" />' . "\n";
+        } else {
+                echo "<!-- Debug: Final Description is EMPTY -->\n";
         }
 }
 add_action('wp_head', 'chroma_shared_meta_description', 2);
