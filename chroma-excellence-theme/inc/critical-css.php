@@ -102,6 +102,14 @@ function chroma_print_critical_css()
             color: rgb(74 108 124)
         }
 
+        .bg-chroma-blue {
+            background-color: rgb(74 108 124)
+        }
+
+        .bg-chroma-green {
+            background-color: rgb(141 163 153)
+        }
+
         .border-chroma-blue\/10 {
             border-color: rgba(74, 108, 124, .1)
         }
@@ -172,6 +180,14 @@ function chroma_print_critical_css()
         .px-4 {
             padding-left: 1rem;
             padding-right: 1rem
+        }
+
+        .w-2 {
+            width: 0.5rem
+        }
+
+        .h-2 {
+            height: 0.5rem
         }
 
         .hidden {
@@ -252,6 +268,17 @@ function chroma_print_critical_css()
             transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
             transition-duration: .15s;
             transition-timing-function: cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .antialiased {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        /* Text Selection */
+        ::selection {
+            background-color: rgb(214 125 107);
+            color: rgb(255 255 255)
         }
 
         /* Critical Animations */
