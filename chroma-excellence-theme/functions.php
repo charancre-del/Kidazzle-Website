@@ -172,12 +172,13 @@ add_filter('upload_mimes', 'chroma_mime_types');
 function chroma_defer_scripts($tag, $handle, $src)
 {
     // Defer jQuery
-    if (!is_admin()) {
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), false, null, true);
-        wp_enqueue_script('jquery');
-        wp_script_add_data('jquery', 'defer', true);
-    }
+    // Defer jQuery - DISABLED (Causing issues with LeadConnector)
+    // if (!is_admin()) {
+    //     wp_deregister_script('jquery');
+    //     wp_register_script('jquery', includes_url('/js/jquery/jquery.min.js'), false, null, true);
+    //     wp_enqueue_script('jquery');
+    //     wp_script_add_data('jquery', 'defer', true);
+    // }
 
     // List of scripts to defer
     $defer_scripts = array('gtag', 'did-0014', 'jquery-core', 'jquery-migrate');
