@@ -122,14 +122,7 @@ function chroma_enqueue_assets()
 }
 add_action('wp_enqueue_scripts', 'chroma_enqueue_assets');
 
-/**
- * Preload critical fonts.
- */
-function chroma_preload_fonts()
-{
-        echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" as="style">' . "\n";
-}
-add_action('wp_head', 'chroma_preload_fonts', 1);
+
 
 /**
  * Add resource hints for external assets to improve initial page performance.
@@ -137,11 +130,7 @@ add_action('wp_head', 'chroma_preload_fonts', 1);
 function chroma_resource_hints($urls, $relation_type)
 {
         if ('preconnect' === $relation_type) {
-                $urls[] = 'https://fonts.googleapis.com';
-                $urls[] = array(
-                        'href' => 'https://fonts.gstatic.com',
-                        'crossorigin' => 'anonymous',
-                );
+
                 if (is_front_page() || is_singular('program') || is_post_type_archive('program')) {
                         $urls[] = 'https://cdn.jsdelivr.net';
                 }
@@ -157,8 +146,7 @@ function chroma_resource_hints($urls, $relation_type)
         }
 
         if ('dns-prefetch' === $relation_type) {
-                $urls[] = '//fonts.googleapis.com';
-                $urls[] = '//fonts.gstatic.com';
+
                 if (is_front_page() || is_singular('program') || is_post_type_archive('program')) {
                         $urls[] = '//cdn.jsdelivr.net';
                 }
