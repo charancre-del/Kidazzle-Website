@@ -208,17 +208,37 @@ add_action('admin_enqueue_scripts', 'chroma_enqueue_admin_assets');
 /**
  * Async load CSS for fonts only (not main CSS to prevent FOUC)
  */
+/**
+ * Async load CSS for fonts only (not main CSS to prevent FOUC)
+ */
 function chroma_async_styles($html, $handle, $href, $media)
 {
-        // Only defer Google Fonts
-        if ('chroma-fonts' === $handle) {
+        // Defer Google Fonts and Font Awesome
+        if (in_array($handle, array('chroma-fonts', 'font-awesome'))) {
+                // If media is 'all', swap to 'print' and add onload
+                $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
+                // If media is already 'print' (rare but possible), ensure onload is present
                 $html = str_replace("media='print'", "media='print' onload=\"this.media='all'\"", $html);
+
                 // Add fallback for no-js
                 $html .= "<noscript><link rel='stylesheet' href='{$href}' media='all'></noscript>";
         }
         return $html;
 }
 add_filter('style_loader_tag', 'chroma_async_styles', 10, 4);
+
+/**
+ * Dequeue Dashicons for non-logged in users to improve performance
+ */
+function chroma_dequeue_dashicons()
+{
+        if (!is_user_logged_in()) {
+                wp_dequeue_style('dashicons');
+                wp_deregister_style('dashicons');
+        }
+}
+add_action('wp_enqueue_scripts', 'chroma_dequeue_dashicons');
+
 
 /**
  * Dequeue CDN styles (specifically Font Awesome) to force local loading.
