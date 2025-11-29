@@ -73,25 +73,25 @@
 			</a>
 
 			<!-- Desktop Navigation -->
-			<nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-brand-ink/70">
+			<nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-brand-ink/70">
 				<?php chroma_primary_nav(); ?>
 			</nav>
 
 			<!-- CTA Button -->
 			<a href="<?php echo esc_url(home_url('/contact#tour')); ?>"
-				class="hidden md:inline-flex items-center gap-2 bg-brand-ink text-white text-xs font-semibold tracking-[0.2em] px-5 py-3 rounded-full shadow-soft hover:bg-chroma-blueDark transition">
+				class="hidden lg:inline-flex items-center gap-2 bg-brand-ink text-white text-xs font-semibold tracking-[0.2em] px-5 py-3 rounded-full shadow-soft hover:bg-chroma-blueDark transition">
 				Book A Tour
 			</a>
 
 			<!-- Mobile Menu Toggle -->
-			<button data-mobile-nav-toggle class="md:hidden text-2xl text-brand-ink" aria-label="Open menu">
+			<button data-mobile-nav-toggle class="lg:hidden text-2xl text-brand-ink" aria-label="Open menu">
 				<i class="fa-solid fa-bars"></i>
 			</button>
 		</div>
 
 		<!-- Mobile Menu -->
 		<div data-mobile-nav
-			class="fixed inset-0 bg-white z-50 translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+			class="fixed inset-0 bg-white z-50 translate-x-full transition-transform duration-300 lg:hidden flex flex-col">
 			<div class="flex items-center justify-between px-5 py-5 border-b border-chroma-blue/10">
 				<div class="flex items-center gap-2">
 					<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo_optimized_40x40.webp'); ?>"
