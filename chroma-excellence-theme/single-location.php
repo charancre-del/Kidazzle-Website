@@ -146,27 +146,41 @@ while (have_posts()):
 				</div>
 
 				<!-- Hero Image / Carousel -->
-				<div class="relative fade-in-up delay-200 hidden md:block">
+				<div class="relative fade-in-up delay-200 block">
 					<div
 						class="absolute inset-0 bg-chroma-blue/10 rounded-[3rem] rotate-6 transform translate-x-4 translate-y-4">
 					</div>
-					<div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]" <?php if (count($hero_gallery) > 1)
-						echo 'data-location-carousel'; ?>>
+					<div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] md:aspect-[4/3] aspect-square"
+						<?php if (count($hero_gallery) > 1)
+							echo 'data-location-carousel'; ?>>
 						<?php if (!empty($hero_gallery)): ?>
 							<!-- Gallery Carousel -->
 							<div class="relative w-full h-full">
 								<div class="flex transition-transform duration-500 ease-in-out h-full"
 									data-location-carousel-track>
-									<?php foreach ($hero_gallery as $index => $image_url): ?>
+									<?php foreach ($hero_gallery as $index => $image_url):
+										// Try to get attachment ID to serve responsive images
+										$attachment_id = attachment_url_to_postid($image_url);
+										?>
 										<div class="w-full h-full flex-shrink-0"
 											data-location-slide="<?php echo esc_attr($index); ?>">
-											<img src="<?php echo esc_url($image_url); ?>"
-												alt="<?php echo esc_attr($location_name); ?> - Image <?php echo esc_attr($index + 1); ?>"
-												class="w-full h-full object-cover" decoding="async"
-												sizes="(max-width: 1024px) 100vw, 50vw" <?php if ($index === 0)
-													echo 'fetchpriority="high"';
-												else
-													echo 'loading="lazy"'; ?> />
+											<?php if ($attachment_id):
+												echo wp_get_attachment_image($attachment_id, 'large', false, array(
+													'class' => 'w-full h-full object-cover',
+													'fetchpriority' => $index === 0 ? 'high' : 'auto',
+													'loading' => $index === 0 ? 'eager' : 'lazy',
+													'decoding' => 'async',
+													'sizes' => '(max-width: 768px) 100vw, 50vw'
+												));
+											else: ?>
+												<img src="<?php echo esc_url($image_url); ?>"
+													alt="<?php echo esc_attr($location_name); ?> - Image <?php echo esc_attr($index + 1); ?>"
+													class="w-full h-full object-cover" decoding="async"
+													sizes="(max-width: 768px) 100vw, 50vw" <?php if ($index === 0)
+														echo 'fetchpriority="high"';
+													else
+														echo 'loading="lazy"'; ?> />
+											<?php endif; ?>
 										</div>
 									<?php endforeach; ?>
 								</div>
@@ -202,11 +216,17 @@ while (have_posts()):
 								<?php endif; ?>
 							</div>
 						<?php elseif (has_post_thumbnail()): ?>
-							<?php the_post_thumbnail('large', array('class' => 'w-full h-full object-cover', 'fetchpriority' => 'high')); ?>
-						<?php else: ?>
-							<img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1000&auto=format&fit=crop"
-								alt="<?php echo esc_attr($location_name); ?> Campus" class="w-full h-full object-cover"
-								fetchpriority="high" decoding="async" sizes="(max-width: 1024px) 100vw, 50vw" width="1000"
+							<?php the_post_thumbnail('large', array('class' => 'w-full h-full object-cover', 'fetchpriority' => 'high', 'sizes' => '(max-width: 768px) 100vw, 50vw')); ?>
+						<?php else:
+							// Unsplash fallback with srcset
+							$base_unsplash = "https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&auto=format&fit=crop";
+							$src_mobile = $base_unsplash . "&w=600&h=600";
+							$src_desktop = $base_unsplash . "&w=1000&h=750";
+							?>
+							<img src="<?php echo esc_url($src_desktop); ?>"
+								srcset="<?php echo esc_url($src_mobile); ?> 600w, <?php echo esc_url($src_desktop); ?> 1000w"
+								sizes="(max-width: 768px) 100vw, 50vw" alt="<?php echo esc_attr($location_name); ?> Campus"
+								class="w-full h-full object-cover" fetchpriority="high" decoding="async" width="1000"
 								height="750" />
 						<?php endif; ?>
 

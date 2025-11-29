@@ -200,7 +200,8 @@ add_filter('script_loader_tag', 'chroma_defer_scripts', 10, 3);
  */
 function chroma_preload_lcp_image()
 {
-    $logo_url = get_template_directory_uri() . '/assets/images/chroma-1920w.webp';
+    // Using optimized logo as LCP candidate since specific hero image is missing
+    $logo_url = get_template_directory_uri() . '/assets/images/logo_optimized_140x140.webp';
     echo '<link rel="preload" as="image" href="' . esc_url($logo_url) . '" fetchpriority="high">' . "\n";
 }
 add_action('wp_head', 'chroma_preload_lcp_image', 1);
@@ -210,6 +211,6 @@ add_action('wp_head', 'chroma_preload_lcp_image', 1);
  */
 function chroma_litespeed_exclude_lcp()
 {
-    return array('chroma-1920w', 'chroma-logo', 'hero');
+    return array('logo_optimized', 'chroma-logo', 'hero', 'chroma-1920w');
 }
 add_filter('litespeed_img_lazy_exclude', 'chroma_litespeed_exclude_lcp');
