@@ -155,11 +155,16 @@ function chroma_enqueue_assets()
                         margin-bottom: 0.5rem !important;
                 }
 
-                /* Critical Fix: Hide Mobile Nav on Desktop */
+                /* Critical Fix: Hide Mobile Nav on Desktop & Force Desktop Nav */
                 @media (min-width: 1024px) {
                         [data-mobile-nav],
                         [data-mobile-nav-toggle] {
                                 display: none !important;
+                        }
+                        
+                        /* Force Desktop Nav Visibility */
+                        header .container > nav {
+                                display: flex !important;
                         }
                 }
         ";
