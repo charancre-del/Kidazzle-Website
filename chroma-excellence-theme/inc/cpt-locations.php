@@ -444,6 +444,13 @@ function chroma_render_location_custom_fields_meta_box($post)
 		</div>
 
 		<div class="chroma-meta-field">
+			<label for="location_special_programs"><?php _e('Special Programs (Badges)', 'chroma-excellence'); ?></label>
+			<textarea id="location_special_programs" name="location_special_programs" rows="2"
+				placeholder="e.g., GA Pre-K, Summer Camp"><?php echo esc_textarea(get_post_meta($post->ID, 'location_special_programs', true)); ?></textarea>
+			<small><?php _e('Enter programs separated by commas. These appear as badges on the location card.', 'chroma-excellence'); ?></small>
+		</div>
+
+		<div class="chroma-meta-field">
 			<label for="location_google_rating"><?php _e('Google Rating', 'chroma-excellence'); ?></label>
 			<input type="text" id="location_google_rating" name="location_google_rating"
 				value="<?php echo esc_attr($google_rating); ?>" placeholder="e.g., 4.9" />

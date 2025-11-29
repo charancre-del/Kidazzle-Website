@@ -317,7 +317,8 @@ while (have_posts()):
 			<section id="director" class="py-20 bg-chroma-blueDark text-white relative overflow-hidden">
 				<div class="absolute right-0 top-0 w-1/2 h-full bg-white/5 skew-x-12 transform origin-top-right"></div>
 
-				<div class="max-w-6xl mx-auto px-4 lg:px-6 relative z-10 grid md:grid-cols-[1fr,2fr] gap-12 items-center">
+				<div
+					class="max-w-6xl mx-auto px-4 lg:px-6 relative z-10 <?php echo $director_photo ? 'grid md:grid-cols-[1fr,2fr] gap-12 items-center' : 'max-w-4xl'; ?>">
 					<?php if ($director_photo): ?>
 						<div class="relative">
 							<div class="absolute inset-0 bg-chroma-yellow rounded-[2.5rem] rotate-3"></div>

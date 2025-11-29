@@ -149,11 +149,13 @@ function chroma_get_region_color_from_term($term_id)
 				
 						// Get age ranges/programs
 						$ages_served = get_post_meta($location_id, 'location_ages_served', true) ?: 'Infant - 12y';
-						$special_programs = get_post_meta($location_id, 'location_special_programs', true);
-						if (!$special_programs) {
-							$special_programs = array('GA Pre-K'); // Default
-						} elseif (!is_array($special_programs)) {
-							$special_programs = array($special_programs);
+						$special_programs_raw = get_post_meta($location_id, 'location_special_programs', true);
+
+						if ($special_programs_raw) {
+							// Explode comma-separated string
+							$special_programs = array_map('trim', explode(',', $special_programs_raw));
+						} else {
+							$special_programs = array('GA Pre-K'); // Default fallback
 						}
 						?>
 
