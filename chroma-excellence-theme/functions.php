@@ -178,7 +178,7 @@ add_filter('upload_mimes', 'chroma_mime_types');
 function chroma_defer_scripts($tag, $handle, $src)
 {
     // List of scripts to defer
-    $defer_scripts = array('gtag', 'did-0014', 'jquery-migrate');
+    $defer_scripts = array('gtag', 'did-0014', 'jquery-migrate', 'jquery.min.js');
 
     foreach ($defer_scripts as $script) {
         if (strpos($src, $script) !== false) {
