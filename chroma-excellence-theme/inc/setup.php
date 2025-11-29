@@ -74,3 +74,15 @@ function chroma_content_width()
 }
 add_action('after_setup_theme', 'chroma_content_width', 0);
 
+/**
+ * Sanitize raw HTML/Scripts for Customizer.
+ * Allows admins to insert scripts.
+ */
+function chroma_sanitize_raw_html($html)
+{
+	if (current_user_can('unfiltered_html')) {
+		return $html;
+	}
+	return wp_kses_post($html);
+}
+

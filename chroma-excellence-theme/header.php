@@ -5,19 +5,6 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php // Preload critical fonts ?>
-	<link rel="preload" as="font" type="font/woff2"
-		href="<?php echo esc_url(get_template_directory_uri() . '/assets/webfonts/Outfit-SemiBold.woff2'); ?>"
-		crossorigin>
-	<link rel="preload" as="font" type="font/woff2"
-		href="<?php echo esc_url(get_template_directory_uri() . '/assets/webfonts/PlayfairDisplay-Bold.woff2'); ?>"
-		crossorigin>
-	<?php wp_head(); ?>
-</head>
-
-<body <?php body_class(); ?>>
-	<?php wp_body_open(); ?>
-
-	<!-- Skip Links for Accessibility -->
 	<a href="#main-content"
 		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-chroma-blue focus:text-white focus:rounded focus:shadow-lg">
 		Skip to main content

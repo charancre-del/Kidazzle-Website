@@ -70,8 +70,9 @@ function chroma_register_location_taxonomy()
 			'show_ui' => true,
 			'show_admin_column' => true,
 			'show_in_rest' => true,
-			'query_var' => true,
-			'rewrite' => array('slug' => 'location-region'),
+			'publicly_queryable' => false,
+			'query_var' => false,
+			'rewrite' => false,
 			'default_term' => array(
 				'name' => __('Uncategorized Locations', 'chroma-excellence'),
 				'slug' => 'uncategorized-locations',
