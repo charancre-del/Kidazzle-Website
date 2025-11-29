@@ -63,9 +63,9 @@ function chroma_get_region_color_from_term($term_id)
 			</p>
 
 			<!-- Filter Bar -->
-			<div class="max-w-4xl mx-auto bg-white p-2 rounded-full shadow-float border border-brand-ink/5 flex flex-col md:flex-row gap-2 fade-in-up"
+			<div class="max-w-7xl mx-auto bg-white p-2 rounded-full shadow-float border border-brand-ink/5 flex flex-col lg:flex-row gap-2 fade-in-up"
 				style="animation-delay: 0.3s;">
-				<div class="relative flex-grow">
+				<div class="relative flex-grow max-w-md">
 					<i class="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-brand-ink/30"></i>
 					<input 
 						type="text" 
@@ -74,12 +74,12 @@ function chroma_get_region_color_from_term($term_id)
 						class="w-full pl-12 pr-4 py-3 rounded-full focus:outline-none text-brand-ink bg-white"
 					/>
 				</div>
-				<div class="flex gap-2 justify-center md:justify-end flex-wrap">
-					<button onclick="filterLocations('all')" data-region="all" class="filter-btn px-6 py-3 rounded-full font-semibold bg-chroma-green text-white hover:shadow-glow transition-all duration-300">
+				<div class="flex gap-2 justify-start lg:justify-end flex-wrap flex-grow items-center">
+					<button onclick="filterLocations('all')" data-region="all" class="filter-btn px-6 py-3 rounded-full font-semibold bg-chroma-green text-white hover:shadow-glow transition-all duration-300 whitespace-nowrap">
 						All Regions
 					</button>
 					<?php foreach ($all_regions as $region): ?>
-						<button onclick="filterLocations('<?php echo esc_attr($region->slug); ?>')" data-region="<?php echo esc_attr($region->slug); ?>" class="filter-btn px-6 py-3 rounded-full font-semibold bg-white text-brand-ink border border-brand-ink/10 hover:bg-brand-ink/5 transition-all duration-300">
+						<button onclick="filterLocations('<?php echo esc_attr($region->slug); ?>')" data-region="<?php echo esc_attr($region->slug); ?>" class="filter-btn px-6 py-3 rounded-full font-semibold bg-white text-brand-ink border border-brand-ink/10 hover:bg-brand-ink/5 transition-all duration-300 whitespace-nowrap">
 							<?php echo esc_html($region->name); ?>
 						</button>
 					<?php endforeach; ?>
@@ -145,21 +145,21 @@ function chroma_get_region_color_from_term($term_id)
 							<div
 								class="bg-white rounded-[2rem] p-6 shadow-card border border-<?php echo esc_attr($is_featured ? $colors['border'] . ' border-opacity-50' : 'brand-ink/5'); ?> hover:border-<?php echo esc_attr($colors['border']); ?>/30 transition-all hover:-translate-y-1 h-full flex flex-col relative overflow-hidden">
 
-								<?php if ($is_new || $is_enrolling): ?>
-									<div
-										class="absolute top-0 right-0 bg-<?php echo esc_attr($is_new ? $colors['text'] : $colors['border']); ?> text-<?php echo esc_attr($is_new ? 'brand-ink' : 'white'); ?> text-[10px] font-bold uppercase px-4 py-1 rounded-bl-xl tracking-wider">
-										<?php echo $is_new ? 'New Campus' : 'Now Enrolling'; ?>
-									</div>
-								<?php endif; ?>
+								<div
+									class="absolute top-0 right-0 bg-<?php echo esc_attr($is_new ? $colors['text'] : $colors['border']); ?> text-<?php echo esc_attr($is_new ? 'brand-ink' : 'white'); ?> text-[10px] font-bold uppercase px-4 py-1 rounded-bl-xl tracking-wider">
+									<?php echo $is_new ? 'New Campus' : 'Now Enrolling'; ?>
+								</div>
 
 								<div
-									class="flex justify-between items-start mb-4 <?php echo ($is_new || $is_enrolling) ? 'mt-2' : ''; ?>">
+									class="flex justify-between items-start mb-4 mt-2">
 									<span
 										class="bg-<?php echo esc_attr($colors['bg']); ?> text-<?php echo esc_attr($colors['text']); ?> px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide">
 										<?php echo esc_html($region_name); ?>
 									</span>
 									<?php if ($is_open): ?>
-										<div class="w-2 h-2 rounded-full bg-chroma-green animate-pulse" title="Open Now">
+										<div class="flex items-center gap-1.5" title="Open Now">
+											<div class="w-2 h-2 rounded-full bg-chroma-green animate-pulse"></div>
+											<span class="text-[10px] font-bold text-chroma-green uppercase tracking-wide">Open Now</span>
 										</div>
 									<?php endif; ?>
 								</div>
