@@ -22,7 +22,81 @@ function chroma_register_menus()
 		'footer_contact' => __('Footer Contact Menu', 'chroma-excellence'),
 	));
 }
-add_action('init', 'chroma_register_menus'); {
+add_action('init', 'chroma_register_menus');
+
+/**
+ * Primary Navigation with Tailwind classes
+ */
+function chroma_primary_nav()
+{
+	wp_nav_menu(array(
+		'theme_location' => 'primary',
+		'container' => false,
+		'menu_class' => '',
+		'fallback_cb' => 'chroma_primary_nav_fallback',
+		'items_wrap' => '%3$s',
+		'depth' => 1,
+		'walker' => new Chroma_Primary_Nav_Walker(),
+	));
+}
+
+/**
+ * Primary Nav Fallback
+ */
+function chroma_primary_nav_fallback()
+{
+	$pages = array(
+		'programs' => 'Programs',
+		'locations' => 'Locations',
+		'about' => 'About Us',
+		'contact' => 'Contact'
+	);
+
+	foreach ($pages as $slug => $title) {
+		$url = home_url('/' . $slug);
+		echo '<a href="' . esc_url($url) . '" class="hover:text-chroma-blue transition">' . esc_html($title) . '</a>';
+	}
+}
+
+/**
+ * Footer Navigation
+ */
+function chroma_footer_nav()
+{
+	wp_nav_menu(array(
+		'theme_location' => 'footer',
+		'container' => false,
+		'menu_class' => '',
+		'fallback_cb' => 'chroma_footer_nav_fallback',
+		'items_wrap' => '%3$s',
+		'depth' => 1,
+		'walker' => new Chroma_Footer_Nav_Walker(),
+	));
+}
+
+/**
+ * Footer Nav Fallback
+ */
+function chroma_footer_nav_fallback()
+{
+	$pages = array(
+		'home' => 'Home',
+		'prismpath' => 'PrismPath',
+		'programs' => 'All Programs',
+		'parents' => 'Parents'
+	);
+
+	foreach ($pages as $slug => $title) {
+		$url = ($slug === 'home') ? home_url('/') : home_url('/' . $slug);
+		echo '<a href="' . esc_url($url) . '" class="block hover:text-white transition">' . esc_html($title) . '</a>';
+	}
+}
+
+/**
+ * Footer Contact Navigation
+ */
+function chroma_footer_contact_nav()
+{
 	if (has_nav_menu('footer_contact')) {
 		wp_nav_menu(array(
 			'theme_location' => 'footer_contact',
