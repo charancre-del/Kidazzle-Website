@@ -22,7 +22,23 @@ define('CHROMA_THEME_URI', get_template_directory_uri());
 
 /**
  * Load core theme functionality
+ * Order matters - load dependencies first
+ */
+
+// Core setup and configuration
+require_once CHROMA_THEME_DIR . '/inc/setup.php';
+require_once CHROMA_THEME_DIR . '/inc/critical-css.php';
+require_once CHROMA_THEME_DIR . '/inc/enqueue.php';
+require_once CHROMA_THEME_DIR . '/inc/program-settings.php';
+require_once CHROMA_THEME_DIR . '/inc/nav-menus.php';
+
+// Custom Post Types
+require_once CHROMA_THEME_DIR . '/inc/cpt-programs.php';
+require_once CHROMA_THEME_DIR . '/inc/cpt-locations.php';
 require_once CHROMA_THEME_DIR . '/inc/cpt-team-members.php';
+
+// API Handlers
+require_once CHROMA_THEME_DIR . '/inc/careers-api.php';
 
 // Page Meta Boxes
 require_once CHROMA_THEME_DIR . '/inc/about-page-meta.php';
