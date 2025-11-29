@@ -59,67 +59,6 @@
 					$line2_array = array_filter($all_lines);
 				}
 				?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-
-<head>
-	<meta charset="<?php bloginfo('charset'); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php // Preload critical fonts ?>
-	<link rel="preload" as="font" type="font/woff2"
-		href="<?php echo esc_url(get_template_directory_uri() . '/assets/webfonts/Outfit-SemiBold.woff2'); ?>"
-		crossorigin>
-	<link rel="preload" as="font" type="font/woff2"
-		href="<?php echo esc_url(get_template_directory_uri() . '/assets/webfonts/PlayfairDisplay-Bold.woff2'); ?>"
-		crossorigin>
-	<?php wp_head(); ?>
-</head>
-
-<body <?php body_class(); ?>>
-	<?php wp_body_open(); ?>
-
-	<!-- Skip Links for Accessibility -->
-	<a href="#main-content"
-		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-chroma-blue focus:text-white focus:rounded focus:shadow-lg">
-		Skip to main content
-	</a>
-
-	<header class="relative bg-white shadow-soft z-40">
-		<div class="container mx-auto px-4 lg:px-6 h-20 lg:h-28 flex items-center justify-between">
-			<!-- Logo -->
-			<a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-4 group">
-				<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo_optimized_70x70.webp'); ?>"
-					srcset="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo_optimized_70x70.webp'); ?> 1x,
-							 <?php echo esc_url(get_template_directory_uri() . '/assets/images/logo_optimized_140x140.webp'); ?> 2x"
-					alt="Chroma Early Learning" width="70" height="70"
-					class="h-14 w-auto lg:h-20 transition-transform duration-300 group-hover:scale-105 no-lazy"
-					data-no-lazy="1" />
-
-				<?php
-				$header_text = get_theme_mod('chroma_header_text', "Early Learning\nAcademy");
-				$all_lines = array_map('trim', explode("\n", $header_text));
-
-				// Check if first line is backslash or empty BEFORE filtering
-				$first_line_is_placeholder = empty($all_lines[0]) || $all_lines[0] === '\\';
-
-				// Remove lines that are just backslash (placeholder for spacing)
-				$all_lines = array_filter($all_lines, function ($line) {
-					return $line !== '\\';
-				});
-				$all_lines = array_values($all_lines); // Re-index array
-				
-				if ($first_line_is_placeholder) {
-					// First line was placeholder, so all remaining lines use "line 2" formatting
-					$line1 = '';
-					$line2_array = array_filter($all_lines); // Remove all empty lines
-				} else {
-					// First line has content, use it as line 1
-					$line1 = $all_lines[0];
-					// Remove first element and filter empty lines for line 2
-					array_shift($all_lines);
-					$line2_array = array_filter($all_lines);
-				}
-				?>
 				<?php if ($line1 || !empty($line2_array)): ?>
 					<div class="leading-tight">
 						<?php if ($line1): ?>
