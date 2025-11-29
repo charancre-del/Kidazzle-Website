@@ -67,19 +67,18 @@ function chroma_get_region_color_from_term($term_id)
 				style="animation-delay: 0.3s;">
 				<div class="relative flex-grow max-w-md">
 					<i class="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-brand-ink/30"></i>
-					<input 
-						type="text" 
-						id="location-search"
-						placeholder="Search by ZIP code or city name..."
-						class="w-full pl-12 pr-4 py-3 rounded-full focus:outline-none text-brand-ink bg-white"
-					/>
+					<input type="text" id="location-search" placeholder="Search by ZIP code or city name..."
+						class="w-full pl-12 pr-4 py-3 rounded-full focus:outline-none text-brand-ink bg-white" />
 				</div>
 				<div class="flex gap-2 justify-start lg:justify-end flex-wrap flex-grow items-center">
-					<button onclick="filterLocations('all')" data-region="all" class="filter-btn px-6 py-3 rounded-full font-semibold bg-chroma-green text-white hover:shadow-glow transition-all duration-300 whitespace-nowrap">
-						All Regions
+					<button onclick="filterLocations('all')" data-region="all"
+						class="filter-btn px-6 py-3 rounded-full font-semibold bg-chroma-green text-white hover:shadow-glow transition-all duration-300 whitespace-nowrap">
+						<?php echo esc_html(get_theme_mod('chroma_locations_label', 'All Locations')); ?>
 					</button>
 					<?php foreach ($all_regions as $region): ?>
-						<button onclick="filterLocations('<?php echo esc_attr($region->slug); ?>')" data-region="<?php echo esc_attr($region->slug); ?>" class="filter-btn px-6 py-3 rounded-full font-semibold bg-white text-brand-ink border border-brand-ink/10 hover:bg-brand-ink/5 transition-all duration-300 whitespace-nowrap">
+						<button onclick="filterLocations('<?php echo esc_attr($region->slug); ?>')"
+							data-region="<?php echo esc_attr($region->slug); ?>"
+							class="filter-btn px-6 py-3 rounded-full font-semibold bg-white text-brand-ink border border-brand-ink/10 hover:bg-brand-ink/5 transition-all duration-300 whitespace-nowrap">
 							<?php echo esc_html($region->name); ?>
 						</button>
 					<?php endforeach; ?>
@@ -126,8 +125,11 @@ function chroma_get_region_color_from_term($term_id)
 						$is_featured = get_post_meta($location_id, 'location_featured', true);
 						$is_new = get_post_meta($location_id, 'location_new', true);
 						$is_enrolling = get_post_meta($location_id, 'location_enrolling', true);
-						$is_open = true; // Can add logic for operating hours
-				
+
+						// Dynamic Open Status
+						$hours_string = get_post_meta($location_id, 'location_hours', true);
+						$is_open = chroma_is_location_open($hours_string);
+
 						// Get age ranges/programs
 						$ages_served = get_post_meta($location_id, 'location_ages_served', true) ?: 'Infant - 12y';
 						$special_programs_raw = get_post_meta($location_id, 'location_special_programs', true);
@@ -147,11 +149,10 @@ function chroma_get_region_color_from_term($term_id)
 
 								<div
 									class="absolute top-0 right-0 bg-<?php echo esc_attr($is_new ? $colors['text'] : $colors['border']); ?> text-<?php echo esc_attr($is_new ? 'brand-ink' : 'white'); ?> text-[10px] font-bold uppercase px-4 py-1 rounded-bl-xl tracking-wider">
-									<?php echo $is_new ? 'New Campus' : 'Now Enrolling'; ?>
+									<?php echo $is_new ? 'New Campus' : esc_html(get_theme_mod('chroma_locations_badge_fallback', 'Now Enrolling')); ?>
 								</div>
 
-								<div
-									class="flex justify-between items-start mb-4 mt-2">
+								<div class="flex justify-between items-start mb-4 mt-2">
 									<span
 										class="bg-<?php echo esc_attr($colors['bg']); ?> text-<?php echo esc_attr($colors['text']); ?> px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide">
 										<?php echo esc_html($region_name); ?>
@@ -159,7 +160,8 @@ function chroma_get_region_color_from_term($term_id)
 									<?php if ($is_open): ?>
 										<div class="flex items-center gap-1.5" title="Open Now">
 											<div class="w-2 h-2 rounded-full bg-chroma-green animate-pulse"></div>
-											<span class="text-[10px] font-bold text-chroma-green uppercase tracking-wide">Open Now</span>
+											<span
+												class="text-[10px] font-bold text-chroma-green uppercase tracking-wide"><?php echo esc_html(get_theme_mod('chroma_locations_open_text', 'Open Now')); ?></span>
 										</div>
 									<?php endif; ?>
 								</div>

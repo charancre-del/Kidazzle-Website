@@ -64,5 +64,33 @@ function chroma_customize_locations($wp_customize)
         'type' => 'text',
     ));
 
+    // Setting: Badge Fallback Text
+    $wp_customize->add_setting('chroma_locations_badge_fallback', array(
+        'default' => 'Now Enrolling',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('chroma_locations_badge_fallback', array(
+        'label' => __('Badge Fallback Text', 'chroma-excellence'),
+        'description' => __('Text to show on the location card badge if not "New Campus" (e.g., "Now Enrolling").', 'chroma-excellence'),
+        'section' => 'chroma_locations_settings',
+        'type' => 'text',
+    ));
+
+    // Setting: Open Now Text
+    $wp_customize->add_setting('chroma_locations_open_text', array(
+        'default' => 'Open Now',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('chroma_locations_open_text', array(
+        'label' => __('"Open Now" Text', 'chroma-excellence'),
+        'description' => __('Text displayed next to the pulsing dot when location is open.', 'chroma-excellence'),
+        'section' => 'chroma_locations_settings',
+        'type' => 'text',
+    ));
+
 }
 add_action('customize_register', 'chroma_customize_locations');

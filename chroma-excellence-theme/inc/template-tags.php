@@ -412,3 +412,50 @@ function chroma_sanitize_url_field($url)
     // If URL validation fails, return empty (don't save invalid URLs)
     return '';
 }
+
+/**
+ * Check if location is currently open based on hours string
+ *
+ * @param string $hours_string e.g., "7am - 6pm"
+ * @return boolean
+ */
+function chroma_is_location_open($hours_string)
+{
+    if (empty($hours_string)) {
+        return false;
+    }
+
+    // Check for weekends (assume closed unless string says otherwise)
+    $is_weekend = (date('N') >= 6);
+    if ($is_weekend && stripos($hours_string, 'Sat') === false && stripos($hours_string, 'Sun') === false) {
+        return false;
+    }
+
+    // Extract times
+    // Look for patterns like "7am - 6pm", "7:00 AM - 6:00 PM"
+    $parts = preg_split('/(-| to )/i', $hours_string);
+    if (count($parts) !== 2) {
+        return false;
+    }
+
+    $start_str = trim($parts[0]);
+    $end_str = trim($parts[1]);
+
+    // Clean up "Mon-Fri" etc from start string if present
+    $start_str = preg_replace('/^[A-Za-z\-, ]+/', '', $start_str);
+
+    $start_time = strtotime($start_str);
+    $end_time = strtotime($end_str);
+    $now = current_time('timestamp');
+
+    if (!$start_time || !$end_time) {
+        return false;
+    }
+
+    // Compare times (minutes from midnight)
+    $current_minutes = (int) date('H', $now) * 60 + (int) date('i', $now);
+    $start_minutes = (int) date('H', $start_time) * 60 + (int) date('i', $start_time);
+    $end_minutes = (int) date('H', $end_time) * 60 + (int) date('i', $end_time);
+
+    return ($current_minutes >= $start_minutes && $current_minutes < $end_minutes);
+}
