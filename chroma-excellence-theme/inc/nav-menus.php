@@ -48,31 +48,6 @@ function chroma_footer_nav()
 	wp_nav_menu(array(
 		'theme_location' => 'footer',
 		'container' => false,
-		'menu_class' => '',
-		'fallback_cb' => 'chroma_footer_nav_fallback',
-		'items_wrap' => '%3$s',
-		'depth' => 1,
-		'walker' => new Chroma_Footer_Nav_Walker(),
-	));
-} {
-	function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
-	{
-		$classes = 'hover:text-chroma-blue transition';
-
-		if ($item->current) {
-			$classes .= ' text-chroma-red';
-		}
-
-		$output .= '<a href="' . esc_url($item->url) . '" class="' . esc_attr($classes) . '">';
-		$output .= esc_html($item->title);
-		$output .= '</a>';
-	}
-}
-
-/**
- * Custom Walker for Footer Navigation
- */
-class Chroma_Footer_Nav_Walker extends Walker_Nav_Menu
 {
 	function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
 	{
