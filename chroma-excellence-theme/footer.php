@@ -28,7 +28,8 @@
 			<!-- Quick Links -->
 			<div class="md:col-span-1">
 				<h3 class="font-bold text-sm mb-3">Quick Links</h3>
-				<nav class="space-y-2 text-xs text-white/70">
+				<nav
+					class="space-y-2 text-xs text-white/70 [&_ul]:!list-none [&_ul]:!m-0 [&_ul]:!p-0 [&_li]:!m-0 [&_li]:!p-0 [&_li]:!leading-normal">
 					<?php chroma_footer_nav(); ?>
 				</nav>
 			</div>
