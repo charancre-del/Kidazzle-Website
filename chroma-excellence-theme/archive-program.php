@@ -95,8 +95,7 @@ $programs_query = new WP_Query(array(
 										'alt' => get_the_title(),
 									)); ?>
 								<?php else: ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>"
-										alt="<?php echo esc_attr(get_the_title()); ?>"
+									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>"
 										class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
 								<?php endif; ?>
 
@@ -126,6 +125,7 @@ $programs_query = new WP_Query(array(
 							<?php endif; ?>
 
 							<a href="<?php echo esc_url($cta_link); ?>"
+								aria-label="<?php echo esc_attr($cta_text . ' for ' . get_the_title()); ?>"
 								class="w-full py-3 rounded-xl border border-brand-ink/10 text-brand-ink text-xs font-bold uppercase tracking-wider text-center hover:bg-<?php echo esc_attr($colors['main']); ?> hover:text-white hover:border-<?php echo esc_attr($colors['main']); ?> transition-colors">
 								<?php echo esc_html($cta_text); ?>
 							</a>
