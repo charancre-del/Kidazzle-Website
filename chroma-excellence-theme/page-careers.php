@@ -45,6 +45,10 @@ $benefits = array(
 // Openings Section
 $openings_title = get_post_meta($page_id, 'careers_openings_title', true) ?: 'Current Opportunities';
 
+// CTA Section
+$cta_title = get_post_meta($page_id, 'careers_cta_title', true) ?: 'Don\'t see your role?';
+$cta_description = get_post_meta($page_id, 'careers_cta_description', true) ?: 'We are always growing. Send us your resume and we\'ll keep it on file.';
+
 // Fetch jobs from API
 $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 ?>
@@ -163,18 +167,20 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 		</section>
 
 		<!-- Application Form Anchor -->
-		<section id="apply" class="py-20 bg-brand-cream text-center">
-			<div class="max-w-2xl mx-auto px-4">
-				<h2 class="font-serif text-3xl font-bold mb-4">
-					<?php echo esc_html($cta_title); ?>
-				</h2>
-				<p class="mb-8 text-brand-ink/60">
-					<?php echo esc_html($cta_description); ?>
-				</p>
-				<a href="<?php echo esc_url($cta_button_url); ?>"
-					class="inline-block px-8 py-4 bg-brand-ink text-white font-bold rounded-full uppercase tracking-[0.2em] text-xs hover:bg-chroma-blue transition-colors">
-					<?php echo esc_html($cta_button_text); ?>
-				</a>
+		<section id="apply" class="py-20 bg-brand-cream">
+			<div class="max-w-4xl mx-auto px-4">
+				<div class="text-center mb-10">
+					<h2 class="font-serif text-3xl font-bold mb-4">
+						<?php echo esc_html($cta_title); ?>
+					</h2>
+					<p class="text-brand-ink/60">
+						<?php echo esc_html($cta_description); ?>
+					</p>
+				</div>
+
+				<div class="bg-white p-10 rounded-[3rem] border border-brand-ink/5 shadow-soft">
+					<?php echo do_shortcode('[chroma_career_form]'); ?>
+				</div>
 			</div>
 		</section>
 
