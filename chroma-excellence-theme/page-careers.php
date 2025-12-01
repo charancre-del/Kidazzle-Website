@@ -87,7 +87,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 				<h1 class="font-serif text-5xl md:text-6xl text-brand-ink mb-6">
 					<?php echo wp_kses_post($hero_title); ?>
 				</h1>
-				<p class="text-lg text-brand-ink/60 max-w-2xl mx-auto mb-10">
+				<p class="text-lg text-brand-ink/80 max-w-2xl mx-auto mb-10">
 					<?php echo esc_html($hero_description); ?>
 				</p>
 				<a href="<?php echo esc_url($hero_button_url); ?>"
@@ -104,7 +104,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 					<h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-ink">
 						<?php echo esc_html($culture_title); ?>
 					</h2>
-					<p class="text-brand-ink/60 mt-4">
+					<p class="text-brand-ink/80 mt-4">
 						<?php echo esc_html($culture_description); ?>
 					</p>
 				</div>
@@ -120,7 +120,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 							<h3 class="font-bold text-xl mb-2">
 								<?php echo esc_html($benefit['title']); ?>
 							</h3>
-							<p class="text-sm text-brand-ink/60">
+							<p class="text-sm text-brand-ink/80">
 								<?php echo esc_html($benefit['desc']); ?>
 							</p>
 						</div>
@@ -146,7 +146,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 									<h3 class="font-bold text-xl text-brand-ink">
 										<?php echo esc_html($job['title']); ?>
 									</h3>
-									<p class="text-sm text-brand-ink/60">
+									<p class="text-sm text-brand-ink/80">
 										<?php echo esc_html($job['location']); ?> &bull;
 										<?php echo esc_html($job['type']); ?>
 									</p>
@@ -159,7 +159,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 						<?php endforeach; ?>
 					<?php else: ?>
 						<div class="text-center py-12 border border-dashed border-brand-ink/20 rounded-2xl">
-							<p class="text-brand-ink/60">No current openings. Please check back later.</p>
+							<p class="text-brand-ink/80">No current openings. Please check back later.</p>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -173,7 +173,7 @@ $jobs = function_exists('chroma_get_careers') ? chroma_get_careers() : array();
 					<h2 class="font-serif text-3xl font-bold mb-4">
 						<?php echo esc_html($cta_title); ?>
 					</h2>
-					<p class="text-brand-ink/60">
+					<p class="text-brand-ink/80">
 						<?php echo esc_html($cta_description); ?>
 					</p>
 				</div>

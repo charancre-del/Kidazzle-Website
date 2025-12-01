@@ -58,7 +58,7 @@ function chroma_get_region_color_from_term($term_id)
 				<?php echo wp_kses_post(get_theme_mod('chroma_locations_archive_title', 'Find your Chroma <span class="text-chroma-green italic">community.</span>')); ?>
 			</h1>
 
-			<p class="text-lg text-brand-ink/60 max-w-2xl mx-auto mb-10 fade-in-up" style="animation-delay: 0.2s;">
+			<p class="text-lg text-brand-ink/80 max-w-2xl mx-auto mb-10 fade-in-up" style="animation-delay: 0.2s;">
 				<?php echo has_excerpt() ? get_the_excerpt() : esc_html(get_theme_mod('chroma_locations_archive_subtitle', 'Serving families across Metro Atlanta with the same high standards of safety, curriculum, and care at every single location.')); ?>
 			</p>
 
@@ -80,7 +80,7 @@ function chroma_get_region_color_from_term($term_id)
 							$colors = chroma_get_region_color_from_term($region_term->term_id);
 							?>
 							<button onclick="filterLocations('<?php echo esc_attr($region_term->slug); ?>')"
-								class="filter-btn whitespace-nowrap px-6 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-brand-ink/60 hover:bg-<?php echo esc_attr($colors['bg']); ?> hover:text-<?php echo esc_attr($colors['text']); ?> border border-transparent hover:border-<?php echo esc_attr($colors['border']); ?>/20 transition-all">
+								class="filter-btn whitespace-nowrap px-6 py-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-brand-ink/80 hover:bg-<?php echo esc_attr($colors['bg']); ?> hover:text-<?php echo esc_attr($colors['text']); ?> border border-transparent hover:border-<?php echo esc_attr($colors['border']); ?>/20 transition-all">
 								<?php echo esc_html($region_term->name); ?>
 							</button>
 						<?php endforeach; ?>
@@ -100,7 +100,7 @@ function chroma_get_region_color_from_term($term_id)
 					class="w-16 h-16 bg-brand-ink/5 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
 					🤔</div>
 				<h3 class="font-serif text-xl font-bold text-brand-ink">No locations found</h3>
-				<p class="text-brand-ink/60 mt-2">Try adjusting your search terms or selecting
+				<p class="text-brand-ink/80 mt-2">Try adjusting your search terms or selecting
 					"<?php echo esc_html(get_theme_mod('chroma_locations_label', 'All Locations')); ?>".</p>
 				<button onclick="filterLocations('all')"
 					class="mt-6 text-chroma-blue font-bold text-sm underline decoration-2 underline-offset-4">
@@ -187,7 +187,7 @@ function chroma_get_region_color_from_term($term_id)
 									<?php echo esc_html($location_name); ?>
 								</h3>
 
-								<p class="text-sm text-brand-ink/60 mb-4 flex-grow">
+								<p class="text-sm text-brand-ink/80 mb-4 flex-grow">
 									<?php echo esc_html($address); ?><br>
 									<?php echo esc_html("$city, $state $zip"); ?>
 								</p>
@@ -295,10 +295,10 @@ function chroma_get_region_color_from_term($term_id)
 		// Update button styles
 		buttons.forEach(btn => {
 			if ((region === 'all' && btn.textContent.includes('All')) || btn.textContent.includes(region)) {
-				btn.classList.remove('bg-white', 'text-brand-ink/60');
+				btn.classList.remove('bg-white', 'text-brand-ink/80');
 				btn.classList.add('bg-brand-ink', 'text-white', 'shadow-md');
 			} else {
-				btn.classList.add('bg-white', 'text-brand-ink/60');
+				btn.classList.add('bg-white', 'text-brand-ink/80');
 				btn.classList.remove('bg-brand-ink', 'text-white', 'shadow-md');
 			}
 		});
@@ -326,7 +326,7 @@ function chroma_get_region_color_from_term($term_id)
 
 		// Reset buttons
 		buttons.forEach(btn => {
-			btn.classList.add('bg-white', 'text-brand-ink/60');
+			btn.classList.add('bg-white', 'text-brand-ink/80');
 			btn.classList.remove('bg-brand-ink', 'text-white', 'shadow-md');
 		});
 

@@ -174,7 +174,7 @@ while (have_posts()):
 										</div>
 										<div class="pt-3">
 											<h3 class="font-bold text-lg text-brand-ink"><?php echo esc_html($title); ?></h3>
-											<p class="text-brand-ink/60"><?php echo esc_html($description); ?></p>
+											<p class="text-brand-ink/80"><?php echo esc_html($description); ?></p>
 										</div>
 									</div>
 								<?php endif; endforeach; ?>

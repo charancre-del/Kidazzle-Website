@@ -43,7 +43,7 @@ $home_id = chroma_get_home_page_id();
                 </a>
             </div>
 
-            <div class="flex flex-wrap items-center gap-5 text-[12px] text-brand-ink/60">
+            <div class="flex flex-wrap items-center gap-5 text-[12px] text-brand-ink/80">
                 <div class="flex items-center gap-2">
                     <span class="text-chroma-yellow text-lg">★★★★★</span>
                     <span>4.8 Average Parent Rating</span>
@@ -104,7 +104,7 @@ $home_id = chroma_get_home_page_id();
                     </div>
                     <div>
                         <p class="font-bold text-sm text-brand-ink">Kindergarten Ready</p>
-                        <p class="text-[11px] text-brand-ink/60">Comprehensive Prep</p>
+                        <p class="text-[11px] text-brand-ink/80">Comprehensive Prep</p>
                     </div>
                 </div>
             </div>

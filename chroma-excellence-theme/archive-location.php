@@ -45,7 +45,7 @@ $locations_query = new WP_Query(array(
 				<?php echo wp_kses_post(get_theme_mod('chroma_locations_archive_title', 'Find your Chroma <span class="text-chroma-green italic">Community</span> - Our Locations')); ?>
 			</h1>
 
-			<p class="text-lg text-brand-ink/60 max-w-2xl mx-auto mb-10 fade-in-up" style="animation-delay: 0.2s;">
+			<p class="text-lg text-brand-ink/80 max-w-2xl mx-auto mb-10 fade-in-up" style="animation-delay: 0.2s;">
 				<?php echo has_excerpt() ? get_the_excerpt() : esc_html(get_theme_mod('chroma_locations_archive_subtitle', 'Serving families across Metro Atlanta with the same high standards of safety, curriculum, and care at every single location.')); ?>
 			</p>
 
@@ -176,7 +176,7 @@ $locations_query = new WP_Query(array(
 									<?php echo esc_html($location_name); ?>
 								</h2>
 
-								<p class="text-sm text-brand-ink/60 mb-4 flex-grow">
+								<p class="text-sm text-brand-ink/80 mb-4 flex-grow">
 									<?php echo esc_html($address); ?><br>
 									<?php echo esc_html("$city, $state $zip"); ?>
 								</p>

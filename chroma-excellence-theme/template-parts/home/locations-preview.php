@@ -53,7 +53,7 @@ $grouped = $locations_data['grouped'] ?? array();
                     <div class="bg-white border border-<?php echo esc_attr($region_colors['border']); ?>/10 rounded-3xl p-6 shadow-soft">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="text-xl"><?php echo esc_html(chroma_region_emoji($region_label)); ?></span>
-                            <h3 class="text-xs uppercase tracking-[0.18em] text-brand-ink/60 font-semibold">
+                            <h3 class="text-xs uppercase tracking-[0.18em] text-brand-ink/80 font-semibold">
                                 <?php echo esc_html($region_label); ?></h3>
                         </div>
                         <?php if (!empty($group['locations'])): ?>

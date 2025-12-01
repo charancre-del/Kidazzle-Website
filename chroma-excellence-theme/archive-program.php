@@ -31,7 +31,7 @@ $programs_query = new WP_Query(array(
 			<h1 class="font-serif text-[2.8rem] md:text-6xl text-brand-ink mb-6 fade-in-up delay-100">
 				Programs and Curriculum that grows <span class="text-chroma-red italic">with them.</span>
 			</h1>
-			<p class="text-lg text-brand-ink/60 max-w-2xl mx-auto mb-10 fade-in-up delay-200">
+			<p class="text-lg text-brand-ink/80 max-w-2xl mx-auto mb-10 fade-in-up delay-200">
 				From sensory discovery in our infant suites to the project-based learning of Pre-K, every program uses
 				our proprietary Prismpath™ model to meet children exactly where they are.
 			</p>
@@ -109,7 +109,7 @@ $programs_query = new WP_Query(array(
 
 							<h2 class="font-serif text-2xl font-bold text-brand-ink mb-2"><?php the_title(); ?></h2>
 
-							<p class="text-sm text-brand-ink/60 mb-6 flex-grow">
+							<p class="text-sm text-brand-ink/80 mb-6 flex-grow">
 								<?php echo has_excerpt() ? get_the_excerpt() : wp_trim_words(get_the_content(), 20); ?>
 							</p>
 
@@ -136,7 +136,7 @@ $programs_query = new WP_Query(array(
 				</div>
 			<?php else: ?>
 				<div class="text-center py-20">
-					<p class="text-brand-ink/60 text-lg">No programs found. Please add programs from the WordPress admin.
+					<p class="text-brand-ink/80 text-lg">No programs found. Please add programs from the WordPress admin.
 					</p>
 				</div>
 			<?php endif; ?>
@@ -199,12 +199,12 @@ $programs_query = new WP_Query(array(
 					<div class="bg-brand-cream p-6 rounded-2xl border border-brand-ink/5">
 						<div class="text-3xl mb-2">🧠</div>
 						<h3 class="font-bold text-brand-ink mb-1">Cognitive Growth</h3>
-						<p class="text-xs text-brand-ink/60">Critical thinking & problem solving.</p>
+						<p class="text-xs text-brand-ink/80">Critical thinking & problem solving.</p>
 					</div>
 					<div class="bg-brand-cream p-6 rounded-2xl border border-brand-ink/5">
 						<div class="text-3xl mb-2">❤️</div>
 						<h3 class="font-bold text-brand-ink mb-1">Emotional IQ</h3>
-						<p class="text-xs text-brand-ink/60">Empathy, regulation & kindness.</p>
+						<p class="text-xs text-brand-ink/80">Empathy, regulation & kindness.</p>
 					</div>
 				</div>
 			</div>

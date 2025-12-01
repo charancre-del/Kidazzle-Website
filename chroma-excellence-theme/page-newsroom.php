@@ -88,7 +88,7 @@ $newsroom_query = new WP_Query($newsroom_args);
     <section class="py-20 bg-brand-cream border-b border-brand-ink/5">
       <div class="max-w-5xl mx-auto px-4">
         <h1 class="font-serif text-4xl md:text-5xl text-brand-ink mb-4">Press & Announcements</h1>
-        <p class="text-brand-ink/60 text-lg">Latest updates from <?php bloginfo('name'); ?>.</p>
+        <p class="text-brand-ink/80 text-lg">Latest updates from <?php bloginfo('name'); ?>.</p>
       </div>
     </section>
 
@@ -128,7 +128,7 @@ $newsroom_query = new WP_Query($newsroom_args);
 
       <?php else: ?>
         <div class="text-center py-16">
-          <p class="text-brand-ink/60 text-lg">No newsroom posts found. Check back soon!</p>
+          <p class="text-brand-ink/80 text-lg">No newsroom posts found. Check back soon!</p>
         </div>
       <?php endif; ?>
     </section>

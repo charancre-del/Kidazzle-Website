@@ -45,7 +45,7 @@ if ( ! $faq_data || empty( $faq_data['items'] ) ) {
                     <span class="font-semibold text-sm text-brand-ink">
                         <?php echo esc_html( $item['question'] ); ?>
                     </span>
-                    <span class="text-brand-ink/60 text-xl flex-shrink-0" data-accordion-icon>⌄</span>
+                    <span class="text-brand-ink/80 text-xl flex-shrink-0" data-accordion-icon>⌄</span>
                 </button>
                 <div
                     id="<?php echo esc_attr( $faq_id ); ?>"

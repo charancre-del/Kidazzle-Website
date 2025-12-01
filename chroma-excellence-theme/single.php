@@ -158,7 +158,7 @@ $related_query = new WP_Query($related_args);
             alt="<?php echo esc_attr($author_name); ?>" />
           <div class="text-left">
             <p class="text-sm font-bold text-brand-ink"><?php echo esc_html($author_name); ?></p>
-            <p class="text-xs text-brand-ink/60"><?php echo esc_html($author_title); ?></p>
+            <p class="text-xs text-brand-ink/80"><?php echo esc_html($author_title); ?></p>
           </div>
         </div>
     </article>

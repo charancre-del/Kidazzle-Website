@@ -52,7 +52,7 @@ if ( empty( $reviews ) ) {
                                                                 <div class="text-center">
                                                                         <p class="font-bold text-brand-ink"><?php echo esc_html( $review['name'] ); ?></p>
                                                                         <?php if ( ! empty( $review['location'] ) ) : ?>
-                                                                                <p class="text-sm text-brand-ink/60"><?php echo esc_html( $review['location'] ); ?></p>
+                                                                                <p class="text-sm text-brand-ink/80"><?php echo esc_html( $review['location'] ); ?></p>
                                                                         <?php endif; ?>
                                                                 </div>
                                                         </div>

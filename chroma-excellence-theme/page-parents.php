@@ -192,7 +192,7 @@ $referral_button_url  = get_post_meta( $page_id, 'parents_referral_button_url', 
 				<h1 class="font-serif text-5xl md:text-6xl text-brand-ink mb-6">
 					<?php echo esc_html( $hero_title ); ?>
 				</h1>
-				<p class="text-lg text-brand-ink/60">
+				<p class="text-lg text-brand-ink/80">
 					<?php echo esc_html( $hero_description ); ?>
 				</p>
 			</div>
@@ -218,7 +218,7 @@ $referral_button_url  = get_post_meta( $page_id, 'parents_referral_button_url', 
 						<h3 class="font-bold text-lg text-brand-ink mb-2">
 							<?php echo esc_html( $resource['title'] ); ?>
 						</h3>
-						<p class="text-xs text-brand-ink/60">
+						<p class="text-xs text-brand-ink/80">
 							<?php echo esc_html( $resource['description'] ); ?>
 						</p>
 					</a>
@@ -250,7 +250,7 @@ $referral_button_url  = get_post_meta( $page_id, 'parents_referral_button_url', 
 									<i class="<?php echo esc_attr( $event['icon'] ); ?> text-<?php echo esc_attr( $event['color'] ); ?>"></i>
 									<?php echo esc_html( $event['title'] ); ?>
 								</h3>
-								<p class="text-sm text-brand-ink/60 leading-relaxed">
+								<p class="text-sm text-brand-ink/80 leading-relaxed">
 									<?php echo esc_html( $event['desc'] ); ?>
 								</p>
 							</div>
@@ -276,7 +276,7 @@ $referral_button_url  = get_post_meta( $page_id, 'parents_referral_button_url', 
 					<h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-ink mb-4">
 						<?php echo esc_html( $nutrition_title ); ?>
 					</h2>
-					<p class="text-brand-ink/60 max-w-2xl mx-auto">
+					<p class="text-brand-ink/80 max-w-2xl mx-auto">
 						<?php echo esc_html( $nutrition_description ); ?>
 					</p>
 				</div>
@@ -356,7 +356,7 @@ $referral_button_url  = get_post_meta( $page_id, 'parents_referral_button_url', 
 					<h2 class="text-3xl font-serif font-bold text-brand-ink">
 						<?php echo esc_html( $faq_title ); ?>
 					</h2>
-					<p class="text-brand-ink/60 mt-2">
+					<p class="text-brand-ink/80 mt-2">
 						<?php echo esc_html( $faq_description ); ?>
 					</p>
 				</div>

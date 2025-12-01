@@ -125,7 +125,7 @@ function chroma_get_category_color($category_slug)
       <div class="max-w-4xl mx-auto px-4">
         <span class="text-chroma-red font-bold tracking-[0.2em] text-xs uppercase mb-3 block">The Blog</span>
         <h1 class="font-serif text-5xl md:text-6xl text-brand-ink mb-6">Chroma Stories</h1>
-        <p class="text-lg text-brand-ink/60">Parenting tips, classroom spotlights, and insights from our educators.</p>
+        <p class="text-lg text-brand-ink/80">Parenting tips, classroom spotlights, and insights from our educators.</p>
 
         <!-- Categories -->
         <div class="flex flex-wrap justify-center gap-2 mt-8">
@@ -207,7 +207,7 @@ function chroma_get_category_color($category_slug)
                   class="font-serif text-xl font-bold text-brand-ink mt-2 mb-2 group-hover:text-<?php echo esc_attr($category_color); ?> transition-colors">
                   <?php the_title(); ?>
                 </h3>
-                <p class="text-sm text-brand-ink/60">
+                <p class="text-sm text-brand-ink/80">
                   <?php echo esc_html(wp_trim_words(get_the_excerpt(), 20)); ?>
                 </p>
               </a>
@@ -217,7 +217,7 @@ function chroma_get_category_color($category_slug)
 
       <?php else: ?>
         <div class="text-center py-16">
-          <p class="text-brand-ink/60 text-lg">No stories found. Check back soon!</p>
+          <p class="text-brand-ink/80 text-lg">No stories found. Check back soon!</p>
         </div>
       <?php endif; ?>
 

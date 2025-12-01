@@ -71,7 +71,7 @@ $contact_title = get_post_meta($page_id, 'employers_contact_title', true) ?: 'Bu
 					Corporate Childcare Solutions: <span class="italic text-chroma-blue">Critical Infrastructure for
 						Your Team</span>
 				</h1>
-				<p class="text-lg text-brand-ink/60 max-w-2xl mx-auto">
+				<p class="text-lg text-brand-ink/80 max-w-2xl mx-auto">
 					<?php echo esc_html($hero_description); ?>
 				</p>
 			</div>

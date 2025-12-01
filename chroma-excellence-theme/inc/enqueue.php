@@ -40,7 +40,7 @@ function chroma_enqueue_assets()
         $fa_path = CHROMA_THEME_DIR . '/assets/css/font-awesome.css';
         $fa_version = file_exists($fa_path) ? filemtime($fa_path) : '6.4.0';
         wp_enqueue_style(
-                'font-awesome',
+                'chroma-font-awesome',
                 CHROMA_THEME_URI . '/assets/css/font-awesome.css',
                 array(),
                 $fa_version,
@@ -293,7 +293,7 @@ add_action('admin_enqueue_scripts', 'chroma_enqueue_admin_assets');
 function chroma_async_styles($html, $handle, $href, $media)
 {
         // Defer Font Awesome (keep chroma-fonts synchronous for LCP)
-        if (in_array($handle, array('font-awesome'))) {
+        if (in_array($handle, array('chroma-font-awesome'))) {
                 // Add data-no-optimize to prevent LiteSpeed from combining/blocking this file
                 $html = str_replace('<link', '<link data-no-optimize="1"', $html);
 

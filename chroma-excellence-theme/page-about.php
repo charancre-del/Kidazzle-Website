@@ -256,7 +256,7 @@ while (have_posts()):
 								<h3 class="font-serif text-xl font-bold text-brand-ink mb-3">
 									<?php echo esc_html($educator['title']); ?>
 								</h3>
-								<p class="text-sm text-brand-ink/60 leading-relaxed">
+								<p class="text-sm text-brand-ink/80 leading-relaxed">
 									<?php echo esc_html($educator['desc']); ?>
 								</p>
 							</div>
@@ -347,7 +347,7 @@ while (have_posts()):
 								<?php endif; ?>
 
 								<?php if (get_the_content()): ?>
-									<p class="text-sm text-brand-ink/60 max-w-xs mx-auto">
+									<p class="text-sm text-brand-ink/80 max-w-xs mx-auto">
 										<?php the_content(); ?>
 									</p>
 								<?php endif; ?>
@@ -498,7 +498,7 @@ while (have_posts()):
 				<h2 class="font-serif text-3xl md:text-5xl font-bold text-brand-ink mb-8">
 					<?php echo esc_html($cta_title); ?>
 				</h2>
-				<p class="text-lg text-brand-ink/60 mb-10"><?php echo esc_html($cta_description); ?></p>
+				<p class="text-lg text-brand-ink/80 mb-10"><?php echo esc_html($cta_description); ?></p>
 				<div class="flex flex-wrap justify-center gap-4">
 					<a href="<?php echo esc_url(home_url('/locations')); ?>"
 						class="px-8 py-4 bg-brand-cream border border-brand-ink/10 text-brand-ink font-bold rounded-full uppercase tracking-[0.2em] text-xs hover:border-chroma-blue hover:text-chroma-blue transition-colors">Find

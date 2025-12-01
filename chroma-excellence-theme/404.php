@@ -47,7 +47,7 @@
     <div class="text-9xl font-serif font-bold text-chroma-yellow opacity-50 mb-4">404</div>
     <h1 class="text-4xl md:text-5xl font-serif font-bold text-brand-ink mb-6">Ruh-roh! This page is playing
       hide-and-seek.</h1>
-    <p class="text-lg text-brand-ink/60 max-w-md mb-10">We've checked the toy bin, looked under the rugs, and even asked
+    <p class="text-lg text-brand-ink/80 max-w-md mb-10">We've checked the toy bin, looked under the rugs, and even asked
       the goldfish, but we can't find this page anywhere. It must be really good at hiding!</p>
 
     <div class="flex flex-wrap justify-center gap-4">

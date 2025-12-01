@@ -58,7 +58,7 @@ for ($i = 1; $i <= 5; $i++) {
     <div class="max-w-7xl mx-auto px-4 lg:px-6 h-[82px] flex items-center justify-between">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="font-bold text-lg text-brand-ink">Chroma</a>
       <a href="<?php echo esc_url(home_url('/')); ?>"
-        class="text-sm font-bold text-brand-ink/60 hover:text-chroma-blue">Back to Home</a>
+        class="text-sm font-bold text-brand-ink/80 hover:text-chroma-blue">Back to Home</a>
     </div>
   </header>
 

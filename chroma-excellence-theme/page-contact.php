@@ -54,7 +54,7 @@ $press_link_url = get_post_meta($page_id, 'contact_press_link_url', true) ?: '/n
 				<h1 class="font-serif text-5xl md:text-6xl text-brand-ink mb-6">
 					Contact Chroma Early Learning
 				</h1>
-				<p class="text-lg text-brand-ink/60">
+				<p class="text-lg text-brand-ink/80">
 					<?php echo esc_html($hero_description); ?>
 				</p>
 			</div>
