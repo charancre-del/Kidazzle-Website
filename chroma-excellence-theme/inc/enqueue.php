@@ -146,23 +146,15 @@ function chroma_enqueue_assets()
                         margin-bottom: 0.5rem !important;
                 }
 
-                /* Critical Fix: Hide Mobile Nav on Desktop & Force Desktop Nav */
-                @media (min-width: 1024px) {
-                        [data-mobile-nav],
-                        [data-mobile-nav-toggle] {
-                                display: none !important;
-                        }
-                        
-                        /* Force Desktop Nav Visibility */
-                        header .container > nav {
-                                display: flex !important;
-                        }
-                        
                         /* Force CTA Button Visibility */
                         header .container > a[href*='contact'] {
                                 display: flex !important;
                         }
                 }
+
+                /* Accessibility: Increase contrast for muted text */
+                .text-brand-ink\/60 { color: rgba(38, 50, 56, 0.8) !important; }
+                .text-brand-ink\/70 { color: rgba(38, 50, 56, 0.85) !important; }
         ";
         wp_add_inline_style('chroma-main', $custom_css);
 
@@ -302,6 +294,9 @@ function chroma_async_styles($html, $handle, $href, $media)
 {
         // Defer Font Awesome (keep chroma-fonts synchronous for LCP)
         if (in_array($handle, array('font-awesome'))) {
+                // Add data-no-optimize to prevent LiteSpeed from combining/blocking this file
+                $html = str_replace('<link', '<link data-no-optimize="1"', $html);
+
                 // If media is 'all', swap to 'print' and add onload
                 $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
                 // If media is already 'print' (rare but possible), ensure onload is present

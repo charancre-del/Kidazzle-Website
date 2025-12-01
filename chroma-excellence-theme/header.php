@@ -7,6 +7,8 @@
 	<link rel="preload" as="font"
 		href="<?php echo get_template_directory_uri(); ?>/assets/webfonts/Outfit-Regular.woff2" type="font/woff2"
 		crossorigin>
+	<link rel="preload" as="font" href="<?php echo get_template_directory_uri(); ?>/assets/webfonts/Outfit-Bold.woff2"
+		type="font/woff2" crossorigin>
 	<?php wp_head(); ?>
 </head>
 
@@ -59,7 +61,7 @@
 				$first_line = array_shift($lines);
 				?>
 				<div class="block leading-tight">
-					<span class="block font-serif text-xl lg:text-2xl font-bold text-brand-ink">
+					<span class="block font-sans text-xl lg:text-2xl font-bold text-brand-ink">
 						<?php echo esc_html($first_line); ?>
 					</span>
 					<?php foreach ($lines as $line): ?>

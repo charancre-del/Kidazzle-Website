@@ -149,220 +149,221 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (window.Chart) {
-      // Use requestAnimationFrame to prevent forced reflow during chart initialization
+      // Use double requestAnimationFrame to prevent forced reflow during chart initialization
       requestAnimationFrame(() => {
-        chartInstance = new Chart(curriculumChartEl.getContext('2d'), {
-          type: 'radar',
-          data: {
-            labels,
-            datasets: [
-              {
-                label: 'Focus',
-                data: (defaultProfile && defaultProfile.data) || [],
-                borderColor: defaultProfile?.color || '#4A6C7C',
-                backgroundColor: `${defaultProfile?.color || '#4A6C7C'}33`,
-                borderWidth: 2,
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: defaultProfile?.color || '#4A6C7C',
-                pointRadius: 4,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-              r: {
-                angleLines: { color: '#e5e7eb' },
-                grid: { color: '#e5e7eb' },
-                suggestedMin: 0,
-                suggestedMax: 100,
-                ticks: { display: false },
-                pointLabels: {
-                  font: { family: 'Outfit, system-ui, sans-serif', size: 12 },
-                  color: '#263238',
+        requestAnimationFrame(() => {
+          chartInstance = new Chart(curriculumChartEl.getContext('2d'), {
+            type: 'radar',
+            data: {
+              labels,
+              datasets: [
+                {
+                  label: 'Focus',
+                  data: (defaultProfile && defaultProfile.data) || [],
+                  borderColor: defaultProfile?.color || '#4A6C7C',
+                  backgroundColor: `${defaultProfile?.color || '#4A6C7C'}33`,
+                  borderWidth: 2,
+                  pointBackgroundColor: '#ffffff',
+                  pointBorderColor: defaultProfile?.color || '#4A6C7C',
+                  pointRadius: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                r: {
+                  angleLines: { color: '#e5e7eb' },
+                  grid: { color: '#e5e7eb' },
+                  suggestedMin: 0,
+                  suggestedMax: 100,
+                  ticks: { display: false },
+                  pointLabels: {
+                    font: { family: 'Outfit, system-ui, sans-serif', size: 12 },
+                    color: '#263238',
+                  },
                 },
               },
             },
-          },
+          });
         });
-      });
-    }
+      }
 
     curriculumButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        setActiveProfile(btn.getAttribute('data-curriculum-button'));
+        btn.addEventListener('click', () => {
+          setActiveProfile(btn.getAttribute('data-curriculum-button'));
+        });
       });
-    });
 
-    if (defaultProfile) {
-      setActiveProfile(defaultProfile.key);
+      if (defaultProfile) {
+        setActiveProfile(defaultProfile.key);
+      }
     }
-  }
 
-  /**
-   * Schedule tabs
-   */
-  const schedule = document.querySelector('[data-schedule]');
-  if (schedule) {
-    const panels = schedule.querySelectorAll('[data-schedule-panel]');
-    const tabs = schedule.querySelectorAll('[data-schedule-tab]');
-    const defaultKey = tabs[0]?.getAttribute('data-schedule-tab');
+    /**
+     * Schedule tabs
+     */
+    const schedule = document.querySelector('[data-schedule]');
+    if (schedule) {
+      const panels = schedule.querySelectorAll('[data-schedule-panel]');
+      const tabs = schedule.querySelectorAll('[data-schedule-tab]');
+      const defaultKey = tabs[0]?.getAttribute('data-schedule-tab');
 
-    const activate = (key) => {
+      const activate = (key) => {
+        tabs.forEach((btn) => {
+          const isActive = btn.getAttribute('data-schedule-tab') === key;
+          btn.classList.toggle('bg-chroma-blue', isActive);
+          btn.classList.toggle('text-white', isActive);
+          btn.classList.toggle('shadow-soft', isActive);
+          btn.classList.toggle('text-brand-ink/60', !isActive);
+          btn.style.color = isActive ? '#ffffff' : 'rgba(38, 50, 56, 0.6)';
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        panels.forEach((panel) => {
+          const isMatch = panel.getAttribute('data-schedule-panel') === key;
+          panel.classList.toggle('hidden', !isMatch);
+          panel.classList.toggle('active', isMatch);
+        });
+      };
+
       tabs.forEach((btn) => {
-        const isActive = btn.getAttribute('data-schedule-tab') === key;
-        btn.classList.toggle('bg-chroma-blue', isActive);
-        btn.classList.toggle('text-white', isActive);
-        btn.classList.toggle('shadow-soft', isActive);
-        btn.classList.toggle('text-brand-ink/60', !isActive);
-        btn.style.color = isActive ? '#ffffff' : 'rgba(38, 50, 56, 0.6)';
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          activate(btn.getAttribute('data-schedule-tab'));
+        });
       });
 
-      panels.forEach((panel) => {
-        const isMatch = panel.getAttribute('data-schedule-panel') === key;
-        panel.classList.toggle('hidden', !isMatch);
-        panel.classList.toggle('active', isMatch);
-      });
-    };
-
-    tabs.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activate(btn.getAttribute('data-schedule-tab'));
-      });
-    });
-
-    if (defaultKey) {
-      activate(defaultKey);
+      if (defaultKey) {
+        activate(defaultKey);
+      }
     }
-  }
 
-  /**
-   * Parent Reviews Carousel
-   */
-  const reviewsCarousel = document.querySelector('[data-reviews-carousel]');
-  if (reviewsCarousel) {
-    const track = reviewsCarousel.querySelector('[data-reviews-track]');
-    const dots = reviewsCarousel.querySelectorAll('[data-review-dot]');
-    const prevBtn = reviewsCarousel.querySelector('[data-review-prev]');
-    const nextBtn = reviewsCarousel.querySelector('[data-review-next]');
-    const slides = reviewsCarousel.querySelectorAll('[data-review-slide]');
+    /**
+     * Parent Reviews Carousel
+     */
+    const reviewsCarousel = document.querySelector('[data-reviews-carousel]');
+    if (reviewsCarousel) {
+      const track = reviewsCarousel.querySelector('[data-reviews-track]');
+      const dots = reviewsCarousel.querySelectorAll('[data-review-dot]');
+      const prevBtn = reviewsCarousel.querySelector('[data-review-prev]');
+      const nextBtn = reviewsCarousel.querySelector('[data-review-next]');
+      const slides = reviewsCarousel.querySelectorAll('[data-review-slide]');
 
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoplayInterval = null;
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+      let autoplayInterval = null;
 
-    const goToSlide = (index) => {
-      if (index < 0) index = totalSlides - 1;
-      if (index >= totalSlides) index = 0;
+      const goToSlide = (index) => {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
 
-      currentIndex = index;
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        currentIndex = index;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-      // Update dots
-      dots.forEach((dot, i) => {
-        if (i === currentIndex) {
-          dot.classList.remove('bg-chroma-blue/30', 'hover:bg-chroma-blue/50', 'w-3');
-          dot.classList.add('bg-chroma-red', 'w-8');
-        } else {
-          dot.classList.remove('bg-chroma-red', 'w-8');
-          dot.classList.add('bg-chroma-blue/30', 'hover:bg-chroma-blue/50', 'w-3');
+        // Update dots
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.remove('bg-chroma-blue/30', 'hover:bg-chroma-blue/50', 'w-3');
+            dot.classList.add('bg-chroma-red', 'w-8');
+          } else {
+            dot.classList.remove('bg-chroma-red', 'w-8');
+            dot.classList.add('bg-chroma-blue/30', 'hover:bg-chroma-blue/50', 'w-3');
+          }
+        });
+      };
+
+      const nextSlide = () => goToSlide(currentIndex + 1);
+      const prevSlide = () => goToSlide(currentIndex - 1);
+
+      // Dot navigation
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          goToSlide(index);
+          resetAutoplay();
+        });
+      });
+
+      // Arrow navigation
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          prevSlide();
+          resetAutoplay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          nextSlide();
+          resetAutoplay();
+        });
+      }
+
+      // Autoplay
+      const startAutoplay = () => {
+        if (totalSlides > 1) {
+          autoplayInterval = setInterval(nextSlide, 6000);
+        }
+      };
+
+      const stopAutoplay = () => {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+      };
+
+      const resetAutoplay = () => {
+        stopAutoplay();
+        startAutoplay();
+      };
+
+      // Start autoplay on load
+      startAutoplay();
+
+      // Pause on hover
+      reviewsCarousel.addEventListener('mouseenter', stopAutoplay);
+      reviewsCarousel.addEventListener('mouseleave', startAutoplay);
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      const handleSwipe = () => {
+        const swipeThreshold = 50;
+        if (touchStartX - touchEndX > swipeThreshold) {
+          nextSlide();
+          resetAutoplay();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+          prevSlide();
+          resetAutoplay();
+        }
+      };
+    }
+
+    /**
+     * Smooth Scrolling for Anchor Links
+     */
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
         }
       });
-    };
-
-    const nextSlide = () => goToSlide(currentIndex + 1);
-    const prevSlide = () => goToSlide(currentIndex - 1);
-
-    // Dot navigation
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-        resetAutoplay();
-      });
-    });
-
-    // Arrow navigation
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetAutoplay();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetAutoplay();
-      });
-    }
-
-    // Autoplay
-    const startAutoplay = () => {
-      if (totalSlides > 1) {
-        autoplayInterval = setInterval(nextSlide, 6000);
-      }
-    };
-
-    const stopAutoplay = () => {
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-      }
-    };
-
-    const resetAutoplay = () => {
-      stopAutoplay();
-      startAutoplay();
-    };
-
-    // Start autoplay on load
-    startAutoplay();
-
-    // Pause on hover
-    reviewsCarousel.addEventListener('mouseenter', stopAutoplay);
-    reviewsCarousel.addEventListener('mouseleave', startAutoplay);
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    track.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    const handleSwipe = () => {
-      const swipeThreshold = 50;
-      if (touchStartX - touchEndX > swipeThreshold) {
-        nextSlide();
-        resetAutoplay();
-      } else if (touchEndX - touchStartX > swipeThreshold) {
-        prevSlide();
-        resetAutoplay();
-      }
-    };
-  }
-
-  /**
-   * Smooth Scrolling for Anchor Links
-   */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      }
     });
   });
-});
