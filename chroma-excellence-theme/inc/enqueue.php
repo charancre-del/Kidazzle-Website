@@ -302,7 +302,7 @@ function chroma_async_styles($html, $handle, $href, $media)
         }
         return $html;
 }
-add_filter('style_loader_tag', 'chroma_async_styles', 10, 4);
+// add_filter('style_loader_tag', 'chroma_async_styles', 10, 4);
 
 /**
  * Dequeue Dashicons for non-logged in users to improve performance
