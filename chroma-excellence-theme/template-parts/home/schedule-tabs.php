@@ -81,55 +81,18 @@ if (empty($tracks)) {
                                                         <?php else: ?>
                                                                 <div
                                                                         class="w-full h-full flex items-center justify-center text-chroma-blueDark/20 text-6xl">
-                                                                        <i class="fa-solid fa-image"></i>
-                                                                </div>
-                                                        <?php endif; ?>
+                                                                        data-content-title>
+                                                                        <?php echo esc_html($track['steps'][0]['title']); ?>
+                                                                        </h4>
+                                                                        <p class="text-brand-ink/80 leading-relaxed transition-opacity duration-300"
+                                                                                data-content-copy>
+                                                                                <?php echo esc_html($track['steps'][0]['copy']); ?>
+                                                                        </p>
+                                                                <?php endif; ?>
+                                                        </div>
+
                                                 </div>
                                         </div>
-
-                                        <!-- Time Buttons -->
-                                        <div class="relative max-w-2xl mx-auto mb-10">
-                                                <!-- Connecting Lines (Visual only) -->
-                                                <div class="absolute top-8 left-4 right-4 h-0.5 bg-brand-ink/10 -z-0"></div>
-                                                <div
-                                                        class="absolute top-[7rem] left-12 right-12 h-0.5 bg-brand-ink/10 -z-0 hidden md:block">
-                                                </div>
-
-                                                <div class="flex flex-wrap justify-center gap-x-6 gap-y-8 relative z-10">
-                                                        <?php foreach ($track['steps'] as $i => $step): ?>
-                                                                <?php
-                                                                $is_first = 0 === $i;
-                                                                $btn_classes = $is_first
-                                                                        ? 'bg-brand-ink text-white shadow-md transform scale-105'
-                                                                        : 'bg-white text-brand-ink/70 hover:text-brand-ink hover:bg-white/80';
-                                                                ?>
-                                                                <button class="w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 <?php echo esc_attr($btn_classes); ?>"
-                                                                        data-schedule-step-trigger
-                                                                        data-title="<?php echo esc_attr($step['title']); ?>"
-                                                                        data-copy="<?php echo esc_attr($step['copy']); ?>"
-                                                                        aria-label="<?php echo esc_attr($step['time']); ?>">
-                                                                        <?php echo esc_html($step['time']); ?>
-                                                                </button>
-                                                        <?php endforeach; ?>
-                                                </div>
-                                        </div>
-
-                                        <!-- Dynamic Content -->
-                                        <div class="max-w-2xl mx-auto min-h-[120px]" data-schedule-content>
-                                                <?php if (!empty($track['steps'][0])): ?>
-                                                        <h4 class="text-xl font-bold text-brand-ink mb-3 transition-colors duration-300"
-                                                                data-content-title>
-                                                                <?php echo esc_html($track['steps'][0]['title']); ?>
-                                                        </h4>
-                                                        <p class="text-brand-ink/80 leading-relaxed transition-opacity duration-300"
-                                                                data-content-copy>
-                                                                <?php echo esc_html($track['steps'][0]['copy']); ?>
-                                                        </p>
-                                                <?php endif; ?>
-                                        </div>
-
-                                </div>
+                                <?php endforeach; ?>
                         </div>
-                <?php endforeach; ?>
-        </div>
 </section>
