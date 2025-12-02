@@ -74,8 +74,8 @@ require_once CHROMA_THEME_DIR . '/inc/city-slug-logic.php';
 require_once CHROMA_THEME_DIR . '/inc/spanish-variant-generator.php';
 require_once CHROMA_THEME_DIR . '/inc/monthly-seo-cron.php';
 
-// LLM SEO / Citation Module
-require_once CHROMA_THEME_DIR . '/inc/llm-seo/bootstrap.php';
+// LLM SEO / Citation Module (Legacy - Disabled to prevent conflict with Advanced SEO/LLM)
+// require_once CHROMA_THEME_DIR . '/inc/llm-seo/bootstrap.php';
 
 // Advanced SEO/LLM Module (Editable Fields)
 require_once CHROMA_THEME_DIR . '/inc/advanced-seo-llm/bootstrap.php';
