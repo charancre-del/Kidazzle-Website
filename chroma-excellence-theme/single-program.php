@@ -158,8 +158,7 @@ while (have_posts()):
 				<section id="schedule" class="py-24 bg-white">
 					<div class="max-w-4xl mx-auto px-4 lg:px-6">
 						<h2 class="text-3xl font-serif font-bold text-center mb-12"><?php echo esc_html($schedule_title); ?></h2>
-						<div
-							class="space-y-8 relative before:absolute before:left-8 before:top-4 before:bottom-4 before:w-0.5 before:bg-brand-ink/10">
+						<div class="space-y-4">
 							<?php foreach ($schedule_items_array as $item):
 								$parts = explode('|', $item);
 								if (count($parts) >= 3):
@@ -167,16 +166,25 @@ while (have_posts()):
 									$title = trim($parts[1]);
 									$description = trim($parts[2]);
 									?>
-									<div class="flex gap-8 items-start relative">
-										<div
-											class="w-16 h-16 rounded-full bg-<?php echo esc_attr($colors['light']); ?> text-<?php echo esc_attr($colors['main']); ?> font-bold flex items-center justify-center shrink-0 z-10 border-4 border-white shadow-sm text-xs">
-											<?php echo esc_html($badge); ?>
+									<details
+										class="group bg-brand-cream rounded-2xl p-4 border border-brand-ink/5 cursor-pointer open:bg-white open:shadow-soft transition-all duration-300">
+										<summary class="flex items-center justify-between font-bold text-brand-ink list-none">
+											<div class="flex items-center gap-4">
+												<span
+													class="w-10 h-10 rounded-full bg-<?php echo esc_attr($colors['light']); ?> text-<?php echo esc_attr($colors['main']); ?> font-bold flex items-center justify-center shrink-0 border-2 border-white shadow-sm text-[10px]">
+													<?php echo esc_html($badge); ?>
+												</span>
+												<span class="text-lg"><?php echo esc_html($title); ?></span>
+											</div>
+											<span
+												class="text-<?php echo esc_attr($colors['main']); ?> group-open:rotate-180 transition-transform duration-300">
+												<i class="fa-solid fa-chevron-down"></i>
+											</span>
+										</summary>
+										<div class="mt-3 pl-[3.5rem] text-brand-ink/80 leading-relaxed text-sm">
+											<?php echo wp_kses_post(wpautop($description)); ?>
 										</div>
-										<div class="pt-3">
-											<h3 class="font-bold text-lg text-brand-ink"><?php echo esc_html($title); ?></h3>
-											<p class="text-brand-ink/80"><?php echo esc_html($description); ?></p>
-										</div>
-									</div>
+									</details>
 								<?php endif; endforeach; ?>
 						</div>
 					</div>
@@ -266,15 +274,15 @@ while (have_posts()):
 			},
 			plugins: { legend: { display: false } }
 		}
-												});
-											};
+													});
+												};
 		document.body.appendChild(script);
-										}
-									});
-								}, { rootMargin: '200px' }); // Start loading 200px before view
+											}
+										});
+									}, { rootMargin: '200px' }); // Start loading 200px before view
 		observer.observe(ctx);
-							}
-						});
+								}
+							});
 	</script>
 
 	<?php

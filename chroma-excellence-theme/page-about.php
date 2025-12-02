@@ -442,55 +442,6 @@ while (have_posts()):
 			</div>
 		</section>
 
-		<!-- Life at Chroma Gallery -->
-		<?php
-		// Fetch Gallery Images (or use defaults)
-		$gallery_img1 = get_post_meta($page_id, 'about_gallery_image_1', true) ?: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800&auto=format&fit=crop';
-		$gallery_img2 = get_post_meta($page_id, 'about_gallery_image_2', true) ?: 'https://images.unsplash.com/photo-1587654780291-39c940483713?q=80&w=800&auto=format&fit=crop';
-		$gallery_img3 = get_post_meta($page_id, 'about_gallery_image_3', true) ?: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?q=80&w=800&auto=format&fit=crop';
-		$gallery_img4 = get_post_meta($page_id, 'about_gallery_image_4', true) ?: 'https://images.unsplash.com/photo-1596464716127-f9a82741cac8?q=80&w=800&auto=format&fit=crop';
-		$gallery_img5 = get_post_meta($page_id, 'about_gallery_image_5', true) ?: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop';
-		?>
-		<section class="py-24 bg-white">
-			<div class="max-w-7xl mx-auto px-4 lg:px-6">
-				<div class="text-center mb-16">
-					<span class="text-chroma-orange font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Life at
-						Chroma</span>
-					<h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-ink">Moments of Joy</h2>
-				</div>
-
-				<div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-					<!-- Gallery Item 1 (Large) -->
-					<div class="col-span-2 row-span-2 rounded-[2rem] overflow-hidden relative group shadow-soft">
-						<img src="<?php echo esc_url($gallery_img1); ?>" alt="Chroma Moment"
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-						<div
-							class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-						</div>
-					</div>
-					<!-- Gallery Item 2 -->
-					<div class="rounded-[2rem] overflow-hidden relative group shadow-soft">
-						<img src="<?php echo esc_url($gallery_img2); ?>" alt="Chroma Moment"
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-					</div>
-					<!-- Gallery Item 3 -->
-					<div class="rounded-[2rem] overflow-hidden relative group shadow-soft">
-						<img src="<?php echo esc_url($gallery_img3); ?>" alt="Chroma Moment"
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-					</div>
-					<!-- Gallery Item 4 -->
-					<div class="rounded-[2rem] overflow-hidden relative group shadow-soft">
-						<img src="<?php echo esc_url($gallery_img4); ?>" alt="Chroma Moment"
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-					</div>
-					<!-- Gallery Item 5 -->
-					<div class="rounded-[2rem] overflow-hidden relative group shadow-soft">
-						<img src="<?php echo esc_url($gallery_img5); ?>" alt="Chroma Moment"
-							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<!-- CTA -->
 		<section class="py-24 bg-white text-center">

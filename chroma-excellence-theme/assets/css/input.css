@@ -13,6 +13,73 @@
  * Base Styles
  */
 @layer base {
+
+  /* Outfit Font Family */
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../webfonts/Outfit-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../webfonts/Outfit-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../webfonts/Outfit-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../webfonts/Outfit-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../webfonts/Outfit-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Playfair Display Font Family */
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('../webfonts/PlayfairDisplay-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('../webfonts/PlayfairDisplay-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('../webfonts/PlayfairDisplay-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html {
     overflow-x: hidden;
   }
