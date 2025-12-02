@@ -60,9 +60,10 @@ function chroma_get_wizard_color_classes($key)
                 <?php endforeach; ?>
             </div>
 
-            <div class="hidden grid md:grid-cols-2 gap-8 items-center pt-6 opacity-0 translate-y-4 transition-all duration-500 ease-out"
+            <div class="hidden pt-6 opacity-0 translate-y-4 transition-all duration-500 ease-out"
                 data-program-wizard-result>
 
+                <div class="grid md:grid-cols-2 gap-8 items-center">
                 <!-- Text Content (Left) -->
                 <div class="text-center md:text-left space-y-4 order-2 md:order-1">
                     <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ink" data-program-wizard-title>
@@ -77,13 +78,9 @@ function chroma_get_wizard_color_classes($key)
                         </a>
                         <a href="#tour"
                             class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-chroma-red text-white font-semibold hover:bg-chroma-red/90 transition shadow-soft">
-                            Book a Tour
+                            Speak to an enrollment specialist
                         </a>
-                        <button type="button"
-                            class="text-brand-ink/50 hover:text-brand-ink underline decoration-dotted ml-2"
-                            data-program-wizard-reset>
-                            Start Over
-                        </button>
+                        
                     </div>
                 </div>
 
@@ -92,6 +89,16 @@ function chroma_get_wizard_color_classes($key)
                     class="order-1 md:order-2 relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-card border-4 border-white transform rotate-2 transition-transform duration-700 hover:rotate-0">
                     <img src="" alt="Program Preview" class="w-full h-full object-cover" data-program-wizard-image />
                 </div>
+            </div>
+
+            <!-- Start Over (Centered Below) -->
+            <div class="text-center mt-8 w-full">
+                <button type="button"
+                    class="text-brand-ink/50 hover:text-brand-ink underline decoration-dotted text-sm transition-colors"
+                    data-program-wizard-reset>
+                    Start Over
+                </button>
+            </div>
 
             </div>
 

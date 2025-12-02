@@ -485,6 +485,12 @@ function chroma_home_program_wizard_options()
                 $excerpt = get_the_excerpt() ?: '';
                 $anchor_slug = get_post_meta($post_id, 'program_anchor_slug', true) ?: get_post_field('post_name', $post_id);
 
+                // Get image with fallback
+                $image_url = get_the_post_thumbnail_url($post_id, 'large');
+                if (!$image_url) {
+                        $image_url = 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=800&auto=format&fit=crop';
+                }
+
                 // Build label with line break for display
                 $label = get_the_title();
                 if ($age_range) {
