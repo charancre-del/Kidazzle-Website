@@ -13,6 +13,13 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Load Base Classes & Helpers
+ */
+require_once __DIR__ . '/class-meta-box-base.php';
+require_once __DIR__ . '/class-field-sanitizer.php';
+require_once __DIR__ . '/class-fallback-resolver.php';
+
+/**
  * Load Core Classes
  */
 require_once __DIR__ . '/meta-boxes/class-location-events.php';
