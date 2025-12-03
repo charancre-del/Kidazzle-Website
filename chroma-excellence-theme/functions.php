@@ -55,13 +55,13 @@ require_once CHROMA_THEME_DIR . '/inc/parents-page-meta.php';
 require_once CHROMA_THEME_DIR . '/inc/careers-page-meta.php';
 require_once CHROMA_THEME_DIR . '/inc/employers-page-meta.php';
 require_once CHROMA_THEME_DIR . '/inc/privacy-page-meta.php';
-// require_once CHROMA_THEME_DIR . '/inc/schema-meta-boxes.php';
-// require_once CHROMA_THEME_DIR . '/inc/general-seo-meta.php';
-// require_once CHROMA_THEME_DIR . '/inc/general-seo-meta.php';
+require_once CHROMA_THEME_DIR . '/inc/schema-meta-boxes.php';
+require_once CHROMA_THEME_DIR . '/inc/general-seo-meta.php';
+require_once CHROMA_THEME_DIR . '/inc/general-seo-meta.php';
 
 // Utility Functions
 require_once CHROMA_THEME_DIR . '/inc/template-tags.php';
-// require_once CHROMA_THEME_DIR . '/inc/about-seo.php';
+require_once CHROMA_THEME_DIR . '/inc/about-seo.php';
 require_once CHROMA_THEME_DIR . '/inc/customizer-home.php';
 require_once CHROMA_THEME_DIR . '/inc/customizer-header.php';
 require_once CHROMA_THEME_DIR . '/inc/customizer-footer.php';
@@ -74,16 +74,16 @@ require_once CHROMA_THEME_DIR . '/inc/acf-homepage.php';
 require_once CHROMA_THEME_DIR . '/inc/cleanup.php';
 
 // SEO and Internationalization
-// require_once CHROMA_THEME_DIR . '/inc/seo-engine.php';
-// require_once CHROMA_THEME_DIR . '/inc/city-slug-logic.php';
-// require_once CHROMA_THEME_DIR . '/inc/spanish-variant-generator.php';
-// require_once CHROMA_THEME_DIR . '/inc/monthly-seo-cron.php';
+require_once CHROMA_THEME_DIR . '/inc/seo-engine.php';
+require_once CHROMA_THEME_DIR . '/inc/city-slug-logic.php';
+require_once CHROMA_THEME_DIR . '/inc/spanish-variant-generator.php';
+require_once CHROMA_THEME_DIR . '/inc/monthly-seo-cron.php';
 
 // LLM SEO / Citation Module (Legacy - Disabled to prevent conflict with Advanced SEO/LLM)
 // require_once CHROMA_THEME_DIR . '/inc/llm-seo/bootstrap.php';
 
 // Advanced SEO/LLM Module (Editable Fields)
-// require_once CHROMA_THEME_DIR . '/inc/advanced-seo-llm/bootstrap.php';
+require_once CHROMA_THEME_DIR . '/inc/advanced-seo-llm/bootstrap.php';
 
 
 
