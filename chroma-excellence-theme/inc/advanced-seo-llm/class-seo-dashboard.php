@@ -217,7 +217,7 @@ class Chroma_SEO_Dashboard
                     <tr>
                         <td>
                             <strong><a
-                                    href="<?php echo get_edit_post_link($id); ?>"><?php echo esc_html($p->post_title); ?></a></strong>
+                                    href="<?php echo admin_url('post.php?post=' . $id . '&action=edit'); ?>"><?php echo esc_html($p->post_title); ?></a></strong>
                             <?php if ($post_type === 'location'): ?>
                                 <br><small><?php echo get_post_meta($id, 'location_city', true); ?></small>
                             <?php endif; ?>
@@ -271,21 +271,27 @@ class Chroma_SEO_Dashboard
             <select id="chroma-inspector-select" style="min-width: 300px;">
                 <option value="">-- Select a Page --</option>
                 <optgroup label="Locations">
-                    <?php foreach ($locations as $loc): ?>
+                    <?php foreach ($locations as $loc):
+                        if (!$loc || !is_a($loc, 'WP_Post'))
+                            continue; ?>
                         <option value="<?php echo $loc->ID; ?>" <?php selected($selected_id, $loc->ID); ?>>
                             <?php echo esc_html($loc->post_title); ?>
                         </option>
                     <?php endforeach; ?>
                 </optgroup>
                 <optgroup label="Programs">
-                    <?php foreach ($programs as $prog): ?>
+                    <?php foreach ($programs as $prog):
+                        if (!$prog || !is_a($prog, 'WP_Post'))
+                            continue; ?>
                         <option value="<?php echo $prog->ID; ?>" <?php selected($selected_id, $prog->ID); ?>>
                             <?php echo esc_html($prog->post_title); ?>
                         </option>
                     <?php endforeach; ?>
                 </optgroup>
                 <optgroup label="Pages">
-                    <?php foreach ($pages as $pg): ?>
+                    <?php foreach ($pages as $pg):
+                        if (!$pg || !is_a($pg, 'WP_Post'))
+                            continue; ?>
                         <option value="<?php echo $pg->ID; ?>" <?php selected($selected_id, $pg->ID); ?>>
                             <?php echo esc_html($pg->post_title); ?>
                         </option>
@@ -294,14 +300,18 @@ class Chroma_SEO_Dashboard
                 <optgroup label="Cities">
                     <?php
                     $cities = get_posts(['post_type' => 'city', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC']);
-                    foreach ($cities as $city): ?>
+                    foreach ($cities as $city):
+                        if (!$city || !is_a($city, 'WP_Post'))
+                            continue; ?>
                         <option value="<?php echo $city->ID; ?>" <?php selected($selected_id, $city->ID); ?>>
                             <?php echo esc_html($city->post_title); ?>
                         </option>
                     <?php endforeach; ?>
                 </optgroup>
                 <optgroup label="Blog Posts">
-                    <?php foreach ($posts as $pt): ?>
+                    <?php foreach ($posts as $pt):
+                        if (!$pt || !is_a($pt, 'WP_Post'))
+                            continue; ?>
                         <option value="<?php echo $pt->ID; ?>" <?php selected($selected_id, $pt->ID); ?>>
                             <?php echo esc_html($pt->post_title); ?>
                         </option>
@@ -416,8 +426,8 @@ class Chroma_SEO_Dashboard
 
         if ($post_type === 'location') {
             $fields += [
-                'schema_loc_name' => ['label' => 'Schema Name', 'fallback' => get_the_title($post_id)],
-                'schema_loc_description' => ['label' => 'Description', 'fallback' => get_the_excerpt($post_id)],
+                'schema_loc_name' => ['label' => 'Schema Name', 'fallback' => get_post_field('post_title', $post_id)],
+                'schema_loc_description' => ['label' => 'Description', 'fallback' => get_post_field('post_excerpt', $post_id)],
                 'schema_loc_telephone' => ['label' => 'Telephone', 'fallback' => get_post_meta($post_id, 'location_phone', true)],
                 'schema_loc_email' => ['label' => 'Email', 'fallback' => get_post_meta($post_id, 'location_email', true)],
                 'schema_loc_price_range' => ['label' => 'Price Range (String)', 'fallback' => '$$'],
@@ -427,8 +437,8 @@ class Chroma_SEO_Dashboard
             ];
         } elseif ($post_type === 'program') {
             $fields += [
-                'schema_prog_name' => ['label' => 'Schema Name', 'fallback' => get_the_title($post_id)],
-                'schema_prog_description' => ['label' => 'Description', 'fallback' => get_the_excerpt($post_id)],
+                'schema_prog_name' => ['label' => 'Schema Name', 'fallback' => get_post_field('post_title', $post_id)],
+                'schema_prog_description' => ['label' => 'Description', 'fallback' => get_post_field('post_excerpt', $post_id)],
                 'schema_prog_service_type' => ['label' => 'Service Type', 'fallback' => 'Early Childhood Education'],
                 'program_age_range' => ['label' => 'Age Range', 'fallback' => ''],
             ];
@@ -436,7 +446,7 @@ class Chroma_SEO_Dashboard
             // General Pages/Posts
             $fields += [
                 'schema_page_type' => ['label' => 'Schema Type', 'fallback' => 'WebPage'],
-                'schema_description' => ['label' => 'Schema Description', 'fallback' => get_the_excerpt($post_id)],
+                'schema_description' => ['label' => 'Schema Description', 'fallback' => get_post_field('post_excerpt', $post_id)],
             ];
         }
 
