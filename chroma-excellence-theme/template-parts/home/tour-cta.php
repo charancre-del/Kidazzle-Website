@@ -18,23 +18,25 @@ if (!$tour_cta) {
             class="bg-white rounded-[2.5rem] shadow-soft border border-chroma-blue/10 overflow-hidden grid md:grid-cols-[1.1fr,1fr]">
             <div class="p-8 md:p-10">
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-ink mb-3">
-                    <?php echo esc_html($tour_cta['heading'] ?: 'Schedule a private tour'); ?></h2>
-                <p class="text-brand-ink/80 text-sm md:text-base mb-6">
-                    <?php echo esc_html($tour_cta['subheading']); ?></p>
+                    <?php echo esc_html($tour_cta['heading'] ?: 'Schedule a private tour'); ?>
+                </h2>
+                <p class="text-brand-ink text-sm md:text-base mb-6">
+                    <?php echo esc_html($tour_cta['subheading']); ?>
+                </p>
                 <div class="space-y-4">
                     <?php
                     if (shortcode_exists('chroma_tour_form')) {
                         echo do_shortcode('[chroma_tour_form]');
                     } else {
                         ?>
-                        <div class="text-brand-ink/80 text-sm">Please activate the "Chroma Tour Form" plugin to display the
+                        <div class="text-brand-ink text-sm">Please activate the "Chroma Tour Form" plugin to display the
                             tour booking form.</div>
                         <?php
                     }
                     ?>
                 </div>
                 <?php if (!empty($tour_cta['trust_text'])): ?>
-                    <p class="text-[11px] text-brand-ink/70 mt-3"><?php echo esc_html($tour_cta['trust_text']); ?></p>
+                    <p class="text-[11px] text-brand-ink mt-3"><?php echo esc_html($tour_cta['trust_text']); ?></p>
                 <?php endif; ?>
             </div>
             <div

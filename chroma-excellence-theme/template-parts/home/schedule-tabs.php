@@ -24,21 +24,21 @@ if (empty($tracks)) {
 			<span class="text-chroma-green font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Day by
 				Day</span>
 			<h2 class="text-3xl md:text-4xl font-serif text-brand-ink mb-3">A Daily Rhythm of Joy</h2>
-			<p class="text-brand-ink/70 max-w-2xl mx-auto">We don't just fill time. Every classroom follows
+			<p class="text-brand-ink max-w-2xl mx-auto">We don't just fill time. Every classroom follows
 				a thoughtful flow designed to balance stimulation, nourishment, and rest.</p>
 		</div>
 
 		<div class="flex justify-center mb-12">
-			<div class="bg-white border border-chroma-blue/15 p-1 rounded-full inline-flex"
-				data-schedule-tabs>
+			<div class="bg-white border border-chroma-blue/15 p-1 rounded-full inline-flex" data-schedule-tabs>
 				<?php foreach ($tracks as $index => $track): ?>
 					<?php
 					$is_active = 0 === $index;
 					$tab_classes = $is_active
 						? 'bg-chroma-blue text-white shadow-soft'
-						: 'text-brand-ink/80 hover:text-chroma-blue';
+						: 'text-brand-ink hover:text-chroma-blue';
 					?>
-					<button class="schedule-tab px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 <?php echo esc_attr($tab_classes); ?>"
+					<button
+						class="schedule-tab px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 <?php echo esc_attr($tab_classes); ?>"
 						data-schedule-tab="<?php echo esc_attr($track['key']); ?>"
 						aria-pressed="<?php echo esc_attr($is_active ? 'true' : 'false'); ?>"><?php echo esc_html($track['label'] ?? ucfirst($track['key'])); ?></button>
 				<?php endforeach; ?>
@@ -66,7 +66,7 @@ if (empty($tracks)) {
 						<h3 class="text-3xl font-serif text-brand-ink mb-4">
 							<?php echo esc_html($track['title']); ?>
 						</h3>
-						<p class="text-brand-ink/70 leading-relaxed">
+						<p class="text-brand-ink leading-relaxed">
 							<?php echo esc_html($track['description'] ?? ''); ?>
 						</p>
 					</div>
@@ -76,11 +76,9 @@ if (empty($tracks)) {
 						<div class="rounded-[2rem] overflow-hidden shadow-lg aspect-video bg-white/50">
 							<?php if (!empty($track['image'])): ?>
 								<img src="<?php echo esc_url($track['image']); ?>"
-									alt="<?php echo esc_attr($track['title']); ?>"
-									class="w-full h-full object-cover" />
+									alt="<?php echo esc_attr($track['title']); ?>" class="w-full h-full object-cover" />
 							<?php else: ?>
-								<div
-									class="w-full h-full flex items-center justify-center text-chroma-blueDark/20 text-6xl">
+								<div class="w-full h-full flex items-center justify-center text-chroma-blueDark/20 text-6xl">
 									<i class="fa-solid fa-image"></i>
 								</div>
 							<?php endif; ?>
@@ -103,11 +101,11 @@ if (empty($tracks)) {
 								$is_first = 0 === $i;
 								$btn_classes = $is_first
 									? 'bg-brand-ink text-white shadow-md transform scale-105'
-									: 'bg-white text-brand-ink/70 hover:text-brand-ink hover:bg-white/80';
+									: 'bg-white text-brand-ink hover:text-brand-ink hover:bg-white/80';
 								?>
-								<button class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all duration-300 <?php echo esc_attr($btn_classes); ?>"
-									data-schedule-step-trigger
-									data-title="<?php echo esc_attr($step['title']); ?>"
+								<button
+									class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all duration-300 <?php echo esc_attr($btn_classes); ?>"
+									data-schedule-step-trigger data-title="<?php echo esc_attr($step['title']); ?>"
 									data-copy="<?php echo esc_attr($step['copy']); ?>"
 									aria-label="<?php echo esc_attr($step['time']); ?>">
 									<?php echo esc_html($step['time']); ?>
@@ -120,11 +118,11 @@ if (empty($tracks)) {
 							<?php foreach ($bottom_steps as $i => $step): ?>
 								<?php
 								// Note: No 'is_first' check here as the first item is always in the top row
-								$btn_classes = 'bg-white text-brand-ink/70 hover:text-brand-ink hover:bg-white/80';
+								$btn_classes = 'bg-white text-brand-ink hover:text-brand-ink hover:bg-white/80';
 								?>
-								<button class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all duration-300 <?php echo esc_attr($btn_classes); ?>"
-									data-schedule-step-trigger
-									data-title="<?php echo esc_attr($step['title']); ?>"
+								<button
+									class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all duration-300 <?php echo esc_attr($btn_classes); ?>"
+									data-schedule-step-trigger data-title="<?php echo esc_attr($step['title']); ?>"
 									data-copy="<?php echo esc_attr($step['copy']); ?>"
 									aria-label="<?php echo esc_attr($step['time']); ?>">
 									<?php echo esc_html($step['time']); ?>
@@ -136,12 +134,10 @@ if (empty($tracks)) {
 					<!-- Dynamic Content -->
 					<div class="max-w-2xl mx-auto min-h-[120px]" data-schedule-content>
 						<?php if (!empty($track['steps'][0])): ?>
-							<h4 class="text-xl font-bold text-brand-ink mb-3 transition-colors duration-300"
-								data-content-title>
+							<h4 class="text-xl font-bold text-brand-ink mb-3 transition-colors duration-300" data-content-title>
 								<?php echo esc_html($track['steps'][0]['title']); ?>
 							</h4>
-							<p class="text-brand-ink/80 leading-relaxed transition-opacity duration-300"
-								data-content-copy>
+							<p class="text-brand-ink leading-relaxed transition-opacity duration-300" data-content-copy>
 								<?php echo esc_html($track['steps'][0]['copy']); ?>
 							</p>
 						<?php endif; ?>

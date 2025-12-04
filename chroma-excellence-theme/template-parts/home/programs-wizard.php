@@ -45,7 +45,7 @@ function chroma_get_wizard_color_classes($key)
         <div class="text-center mb-10 fade-in-up">
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-ink mb-3">Find the right program in 10
                 seconds</h2>
-            <p class="text-brand-ink/70 text-sm md:text-base max-w-2xl mx-auto">Choose your child's age and we'll
+            <p class="text-brand-ink text-sm md:text-base max-w-2xl mx-auto">Choose your child's age and we'll
                 suggest the Chroma program designed for their development stage and your family's needs.</p>
         </div>
 
@@ -76,8 +76,7 @@ function chroma_get_wizard_color_classes($key)
                     <div class="text-center md:text-left space-y-4 order-2 md:order-1">
                         <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ink" data-program-wizard-title>
                             Program Name</h3>
-                        <p class="text-brand-ink/70 text-sm md:text-base leading-relaxed"
-                            data-program-wizard-description>
+                        <p class="text-brand-ink text-sm md:text-base leading-relaxed" data-program-wizard-description>
                             Description goes here.</p>
 
                         <div class="flex flex-wrap gap-3 text-xs pt-2 justify-center md:justify-start">
@@ -105,7 +104,7 @@ function chroma_get_wizard_color_classes($key)
                 <!-- Start Over (Centered Below) -->
                 <div class="text-center mt-8 w-full">
                     <button type="button"
-                        class="text-brand-ink/50 hover:text-brand-ink underline decoration-dotted text-sm transition-colors"
+                        class="text-brand-ink hover:text-chroma-blue underline decoration-dotted text-sm transition-colors"
                         data-program-wizard-reset>
                         Start Over
                     </button>

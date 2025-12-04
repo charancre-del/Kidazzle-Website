@@ -15,21 +15,16 @@ if (!defined('ABSPATH')) {
 class Chroma_Schema_Injector
 {
     /**
-     * Output Person Schema for Directors
+     * Get Person Schema Data
      */
-    public static function output_person_schema()
+    public static function get_person_schema_data($post_id)
     {
-        if (!is_singular('location')) {
-            return;
-        }
-
-        $post_id = get_the_ID();
         $director_name = get_post_meta($post_id, 'location_director_name', true);
         $director_bio = get_post_meta($post_id, 'location_director_bio', true);
         $director_photo = get_post_meta($post_id, 'location_director_photo', true);
 
         if (!$director_name) {
-            return;
+            return null;
         }
 
         $schema = [
@@ -49,7 +44,22 @@ class Chroma_Schema_Injector
             $schema['image'] = $director_photo;
         }
 
-        echo '<script type="application/ld+json">' . wp_json_encode($schema) . '</script>';
+        return $schema;
+    }
+
+    /**
+     * Output Person Schema for Directors
+     */
+    public static function output_person_schema()
+    {
+        if (!is_singular('location')) {
+            return;
+        }
+
+        $schema = self::get_person_schema_data(get_the_ID());
+        if ($schema) {
+            echo '<script type="application/ld+json">' . wp_json_encode($schema) . '</script>';
+        }
     }
 
     /**
@@ -86,6 +96,27 @@ class Chroma_Schema_Injector
     }
 
     /**
+     * Get Organization Schema Data
+     */
+    public static function get_organization_schema_data()
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            '@id' => home_url() . '#organization',
+            'name' => get_bloginfo('name'),
+            'url' => home_url(),
+            'logo' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
+            'sameAs' => [],
+            'contactPoint' => [
+                '@type' => 'ContactPoint',
+                'telephone' => get_theme_mod('chroma_phone_number'),
+                'contactType' => 'customer service'
+            ]
+        ];
+    }
+
+    /**
      * Output Global Organization Schema
      */
     public static function output_organization_schema()
@@ -94,25 +125,75 @@ class Chroma_Schema_Injector
             return;
         }
 
-        $schema = [
-            '@context' => 'https://schema.org',
-            '@type' => 'Organization',
-            '@id' => home_url() . '#organization',
-            'name' => get_bloginfo('name'),
-            'url' => home_url(),
-            'logo' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
-            'sameAs' => [
-                // Add social links here if available via theme mods
-            ],
-            'contactPoint' => [
-                '@type' => 'ContactPoint',
-                'telephone' => get_theme_mod('chroma_phone_number'), // Assuming this exists
-                'contactType' => 'customer service'
-            ]
-        ];
-
+        $schema = self::get_organization_schema_data();
         echo '<script type="application/ld+json">' . wp_json_encode($schema) . '</script>';
     }
+    /**
+     * Get default schema data for a given post type
+     * Used by Schema Builder to pre-fill with intelligent defaults
+     */
+    public static function get_default_schema_for_post_type($post_id)
+    {
+        $post_type = get_post_type($post_id);
+        $defaults = [];
+
+        switch ($post_type) {
+            case 'location':
+                // ChildCare schema for locations
+                $location_name = get_the_title($post_id);
+                $address = get_post_meta($post_id, 'location_address', true);
+                $phone = get_post_meta($post_id, 'location_phone', true);
+                $description = get_the_excerpt($post_id) ?: get_post_meta($post_id, 'location_short_description', true);
+
+                $defaults[] = [
+                    'type' => 'ChildCare',
+                    'data' => [
+                        'name' => $location_name,
+                        'description' => $description ?: sprintf(__('Quality childcare and early education at %s', 'chroma-excellence'), $location_name),
+                        'address' => $address ?: '',
+                        'telephone' => $phone ?: get_theme_mod('chroma_phone_number', ''),
+                        'url' => get_permalink($post_id),
+                        'priceRange' => '$$',
+                    ]
+                ];
+                break;
+
+            case 'program':
+                // Service schema for programs
+                $program_name = get_the_title($post_id);
+                $program_desc = get_the_excerpt($post_id);
+                $age_range = get_post_meta($post_id, 'program_age_range', true);
+
+                $defaults[] = [
+                    'type' => 'Service',
+                    'data' => [
+                        'name' => $program_name,
+                        'description' => $program_desc ?: sprintf(__('%s program at Chroma Early Learning', 'chroma-excellence'), $program_name),
+                        'provider' => [
+                            '@type' => 'Organization',
+                            'name' => get_bloginfo('name'),
+                            'url' => home_url()
+                        ],
+                        'serviceType' => 'Educational Program',
+                        'areaServed' => 'Metro Atlanta, Georgia',
+                    ]
+                ];
+                break;
+
+            case 'page':
+                // About page gets Organization schema
+                if (is_page('about')) {
+                    $defaults[] = [
+                        'type' => 'Organization',
+                        'data' => self::get_organization_schema_data()
+                    ];
+                }
+                break;
+        }
+
+        return $defaults;
+    }
+
     /**
      * Output Modular Schemas from Schema Builder
      */

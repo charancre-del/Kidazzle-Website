@@ -349,7 +349,9 @@ while (have_posts()):
 								<?php if (get_the_content()): ?>
 									<button
 										class="chroma-read-bio-btn text-sm font-bold text-chroma-blue hover:text-chroma-blueDark underline mt-2"
-										data-bio-target="bio-<?php the_ID(); ?>" data-member-name="<?php the_title_attribute(); ?>"
+										data-bio-target="bio-<?php the_ID(); ?>" 
+										data-member-name="<?php the_title_attribute(); ?>"
+										data-member-image="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: ''); ?>"
 										aria-label="Read bio for <?php the_title_attribute(); ?>">
 										Read Bio
 									</button>
@@ -495,14 +497,19 @@ while (have_posts()):
 	<div id="chroma-bio-modal"
 		class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-brand-ink/80 backdrop-blur-sm"
 		role="dialog" aria-modal="true" aria-labelledby="chroma-bio-modal-title">
-		<div class="bg-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-8 md:p-12">
+		<div class="bg-white rounded-[2rem] max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-8 md:p-12">
 			<button id="chroma-bio-close"
-				class="absolute top-6 right-6 text-brand-ink/50 hover:text-chroma-red transition-colors"
+				class="absolute top-6 right-6 text-brand-ink/50 hover:text-chroma-red transition-colors z-10"
 				aria-label="Close modal">
 				<i class="fa-solid fa-xmark text-2xl"></i>
 			</button>
 			<h3 id="chroma-bio-modal-title" class="font-serif text-2xl md:text-3xl font-bold text-brand-ink mb-6"></h3>
-			<div id="chroma-bio-modal-content" class="prose prose-lg text-brand-ink/80"></div>
+			<div class="grid md:grid-cols-[300px_1fr] gap-6">
+				<div id="chroma-bio-modal-image" class="rounded-2xl overflow-hidden bg-gradient-to-br from-chroma-blue to-chroma-blueDark flex items-center justify-center min-h-[300px]">
+					<i class="fa-solid fa-user text-6xl text-white/30"></i>
+				</div>
+				<div id="chroma-bio-modal-content" class="prose prose-lg text-brand-ink/80"></div>
+			</div>
 		</div>
 	</div>
 
@@ -517,12 +524,23 @@ while (have_posts()):
 			function openModal(btn) {
 				const targetId = btn.getAttribute('data-bio-target');
 				const name = btn.getAttribute('data-member-name');
+				const imageUrl = btn.getAttribute('data-member-image');
 				const sourceContent = document.getElementById(targetId);
 
 				if (sourceContent) {
 					lastFocusedElement = btn;
 					title.textContent = name;
 					content.innerHTML = sourceContent.innerHTML;
+					
+					// Populate image if available
+					const imageContainer = document.getElementById('chroma-bio-modal-image');
+					if (imageUrl && imageContainer) {
+						imageContainer.innerHTML = `<img src="${imageUrl}" alt="${name}" class="w-full h-full object-cover">`;
+					} else if (imageContainer) {
+						// Reset to placeholder if no image
+						imageContainer.innerHTML = '<i class="fa-solid fa-user text-6xl text-white/30"></i>';
+					}
+					
 					modal.classList.remove('hidden');
 					closeBtn.focus();
 					document.body.style.overflow = 'hidden';

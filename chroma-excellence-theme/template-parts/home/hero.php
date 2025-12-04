@@ -19,7 +19,7 @@ $home_id = chroma_get_home_page_id();
     <div class="max-w-7xl mx-auto px-4 lg:px-6 relative z-10 grid lg:grid-cols-2 gap-14 items-center">
         <div class="space-y-8 fade-in-up">
             <div
-                class="inline-flex items-center gap-2 bg-white border border-chroma-blue/15 px-3 py-1.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-semibold text-brand-ink/70 shadow-soft">
+                class="inline-flex items-center gap-2 bg-white border border-chroma-blue/15 px-3 py-1.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-semibold text-brand-ink shadow-soft">
                 <span class="w-2 h-2 rounded-full bg-chroma-blue animate-pulse"></span>
                 19+ Metro Atlanta Locations
             </div>
@@ -28,7 +28,7 @@ $home_id = chroma_get_home_page_id();
                 <?php echo wp_kses_post($hero['heading']); ?>
             </h1>
 
-            <p class="text-[15px] leading-relaxed text-brand-ink/70 max-w-xl">
+            <p class="text-[15px] leading-relaxed text-brand-ink max-w-xl">
                 <?php echo esc_html($hero['subheading']); ?>
             </p>
 
@@ -43,7 +43,7 @@ $home_id = chroma_get_home_page_id();
                 </a>
             </div>
 
-            <div class="flex flex-wrap items-center gap-5 text-[12px] text-brand-ink/80">
+            <div class="flex flex-wrap items-center gap-5 text-[12px] text-brand-ink">
                 <div class="flex items-center gap-2">
                     <span class="text-chroma-yellow text-lg">★★★★★</span>
                     <span>4.8 Average Parent Rating</span>
@@ -76,8 +76,8 @@ $home_id = chroma_get_home_page_id();
                 elseif ($hero_image):
                     // Priority 2: Customizer hero image
                     ?>
-                    <img src="<?php echo esc_url($hero_image); ?>" class="w-full h-full object-cover"
-                        alt="Chroma Classroom" fetchpriority="high" />
+                    <img src="<?php echo esc_url($hero_image); ?>" class="w-full h-full object-cover" alt="Chroma Classroom"
+                        fetchpriority="high" />
                 <?php elseif (file_exists($hero_video_path)): ?>
                     <!-- Priority 3: Hero video file -->
                     <video autoplay muted playsinline loop class="w-full h-full object-cover">
@@ -104,7 +104,7 @@ $home_id = chroma_get_home_page_id();
                     </div>
                     <div>
                         <p class="font-bold text-sm text-brand-ink">Kindergarten Ready</p>
-                        <p class="text-[11px] text-brand-ink/80">Comprehensive Prep</p>
+                        <p class="text-[11px] text-brand-ink">Comprehensive Prep</p>
                     </div>
                 </div>
             </div>

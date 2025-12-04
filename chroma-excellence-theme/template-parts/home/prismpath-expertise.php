@@ -33,7 +33,7 @@ $readiness_text = $readiness['description'];
 				Standard</span>
 			<h2 class="text-3xl md:text-5xl font-serif text-brand-ink"><?php echo esc_html($heading); ?></h2>
 			<?php if ($subheading): ?>
-				<p class="text-brand-ink/70 mt-4 max-w-2xl mx-auto"><?php echo esc_html($subheading); ?></p>
+				<p class="text-brand-ink mt-4 max-w-2xl mx-auto"><?php echo esc_html($subheading); ?></p>
 			<?php endif; ?>
 		</div>
 
@@ -131,7 +131,7 @@ $readiness_text = $readiness['description'];
 					<?php endif; ?>
 					<h3 class="text-xl font-bold text-brand-ink"><?php echo esc_html($card_4['heading']); ?></h3>
 				</div>
-				<p class="text-brand-ink/80 text-sm">
+				<p class="text-brand-ink text-sm">
 					<?php echo esc_html($card_4['text']); ?>
 				</p>
 			</div>

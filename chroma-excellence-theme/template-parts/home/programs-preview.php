@@ -25,7 +25,7 @@ $program_slug = chroma_get_program_base_slug();
                 <?php echo esc_html($programs['heading'] ?: 'Our Programs'); ?>
             </h2>
             <?php if (!empty($programs['subheading'])): ?>
-                <p class="text-xl text-brand-ink/80 max-w-3xl mx-auto">
+                <p class="text-xl text-brand-ink max-w-3xl mx-auto">
                     <?php echo esc_html($programs['subheading']); ?>
                 </p>
             <?php endif; ?>
@@ -53,7 +53,7 @@ $program_slug = chroma_get_program_base_slug();
                                 Ages <?php echo esc_html($age_range); ?>
                             </div>
                         <?php endif; ?>
-                        <p class="text-brand-ink/70 mb-6">
+                        <p class="text-brand-ink mb-6">
                             <?php echo esc_html($excerpt); ?>
                         </p>
                         <a href="<?php echo esc_url($url); ?>"

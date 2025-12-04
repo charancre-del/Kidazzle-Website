@@ -9,56 +9,65 @@
 
 $profiles = chroma_home_curriculum_profiles();
 
-if ( empty( $profiles['labels'] ) || empty( $profiles['profiles'] ) ) {
+if (empty($profiles['labels']) || empty($profiles['profiles'])) {
         return;
 }
 
-$labels       = $profiles['labels'];
-$profile_list = array_values( $profiles['profiles'] );
-$first        = $profile_list[0];
+$labels = $profiles['labels'];
+$profile_list = array_values($profiles['profiles']);
+$first = $profile_list[0];
 ?>
 
 <section id="curriculum" class="py-20 bg-brand-cream border-y border-chroma-blue/10" data-section="curriculum">
         <div class="max-w-6xl mx-auto px-4 lg:px-6 grid lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-5">
-                        <span class="text-chroma-blue font-bold tracking-[0.2em] text-[11px] uppercase">The Prismpath™ Curriculum</span>
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-ink">A curriculum that shifts as your child grows</h2>
-                        <p class="text-brand-ink/70 text-sm md:text-base">Our Prismpath™ framework balances five pillars – physical, emotional, social, academic, and creative development. The mix changes at each age so your child gets exactly what they need, when they need it.</p>
+                        <span class="text-chroma-blue font-bold tracking-[0.2em] text-[11px] uppercase">The Prismpath™
+                                Curriculum</span>
+                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-ink">A curriculum that shifts as
+                                your child grows</h2>
+                        <p class="text-brand-ink text-sm md:text-base">Our Prismpath™ framework balances five pillars –
+                                physical, emotional, social, academic, and creative development. The mix changes at each
+                                age so your child gets exactly what they need, when they need it.</p>
                         <div class="flex flex-wrap gap-2 text-xs" data-curriculum-buttons>
-                                <?php foreach ( $profiles['profiles'] as $index => $profile ) :
-                                        $label = $profile['label'] ?? ucfirst( $profile['key'] );
+                                <?php foreach ($profiles['profiles'] as $index => $profile):
+                                        $label = $profile['label'] ?? ucfirst($profile['key']);
 
                                         // Separate emoji from text (emoji at start of string)
                                         $emoji = '';
                                         $text = $label;
-                                        if ( preg_match( '/^([\x{1F300}-\x{1F9FF}]|[\x{2600}-\x{26FF}]|[\x{2700}-\x{27BF}])\s*/u', $label, $matches ) ) {
+                                        if (preg_match('/^([\x{1F300}-\x{1F9FF}]|[\x{2600}-\x{26FF}]|[\x{2700}-\x{27BF}])\s*/u', $label, $matches)) {
                                                 $emoji = $matches[0];
-                                                $text = trim( substr( $label, strlen( $emoji ) ) );
+                                                $text = trim(substr($label, strlen($emoji)));
                                         }
-                                ?>
+                                        ?>
                                         <?php
                                         $is_active = 0 === $index;
                                         $button_classes = $is_active
                                                 ? 'bg-chroma-blue text-white shadow-soft'
-                                                : 'bg-white text-brand-ink/70 hover:border-chroma-blue';
+                                                : 'bg-white text-brand-ink hover:border-chroma-blue';
                                         ?>
-                                        <button class="px-4 py-2 rounded-full font-semibold border border-chroma-blue/20 <?php echo esc_attr( $button_classes ); ?>" data-curriculum-button="<?php echo esc_attr( $profile['key'] ); ?>">
-                                                <?php if ( $emoji ) : ?><span class="inline-block mr-1"><?php echo esc_html( $emoji ); ?></span><?php endif; ?><?php echo esc_html( $text ); ?>
+                                        <button class="px-4 py-2 rounded-full font-semibold border border-chroma-blue/20 <?php echo esc_attr($button_classes); ?>"
+                                                data-curriculum-button="<?php echo esc_attr($profile['key']); ?>">
+                                                <?php if ($emoji): ?><span
+                                                                class="inline-block mr-1"><?php echo esc_html($emoji); ?></span><?php endif; ?><?php echo esc_html($text); ?>
                                         </button>
                                 <?php endforeach; ?>
                         </div>
                         <div class="bg-white rounded-3xl border-l-4 border-chroma-red shadow-soft p-6 md:p-7">
-                                <h3 class="font-serif text-xl md:text-2xl font-bold text-brand-ink mb-2" data-curriculum-title><?php echo esc_html( $first['title'] ); ?></h3>
-                                <p class="text-brand-ink/70 text-sm md:text-base" data-curriculum-description><?php echo esc_html( $first['description'] ); ?></p>
+                                <h3 class="font-serif text-xl md:text-2xl font-bold text-brand-ink mb-2"
+                                        data-curriculum-title><?php echo esc_html($first['title']); ?></h3>
+                                <p class="text-brand-ink text-sm md:text-base" data-curriculum-description>
+                                        <?php echo esc_html($first['description']); ?></p>
                         </div>
                 </div>
                 <div>
                         <div class="bg-white rounded-[2.5rem] shadow-soft border border-chroma-blue/10 p-6">
                                 <div class="relative h-[340px] md:h-[380px]">
-                                        <canvas data-curriculum-chart aria-label="Curriculum focus radar chart" role="img"></canvas>
+                                        <canvas data-curriculum-chart aria-label="Curriculum focus radar chart"
+                                                role="img"></canvas>
                                 </div>
                         </div>
                 </div>
         </div>
-        <script type="application/json" data-curriculum-config><?php echo wp_json_encode( $profiles ); ?></script>
+        <script type="application/json" data-curriculum-config><?php echo wp_json_encode($profiles); ?></script>
 </section>

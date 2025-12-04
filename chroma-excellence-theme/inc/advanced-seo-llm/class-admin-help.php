@@ -86,6 +86,30 @@ class Chroma_Admin_Help
                     <p>Submit this URL to Google Earth and other geo-directories.</p>
                 </div>
 
+                <!-- Schema Builder -->
+                <div class="chroma-doc-section">
+                    <h3>📊 Schema Builder</h3>
+                    <p><strong>New Feature!</strong> Each page now has intelligent default schemas.</p>
+                    <ul>
+                        <li><strong>Locations:</strong> Automatically get ChildCare schema with address, phone, description</li>
+                        <li><strong>Programs:</strong> Service schema with provider information and service type</li>
+                        <li><strong>Pages:</strong> Organization schema for About page</li>
+                    </ul>
+                    <p>Use the "Schema Builder" tab to view, edit, or add multiple schemas to any page.</p>
+                </div>
+
+                <!-- LLM Targeting Tab -->
+                <div class="chroma-doc-section">
+                    <h3>🎯 LLM Targeting Tab</h3>
+                    <p>Centralized control for how AI assistants recommend your pages.</p>
+                    <ul>
+                        <li><strong>Primary Intent:</strong> Define the main user goal (e.g., "childcare_discovery")</li>
+                        <li><strong>Target Queries:</strong> Add natural language queries where LLMs should cite you</li>
+                        <li><strong>Key Differentiators:</strong> Unique strengths LLMs can mention</li>
+                    </ul>
+                    <p>All fields show smart fallbacks when empty. Edit any post type from one dashboard!</p>
+                </div>
+
                 <!-- LLM Optimization -->
                 <div class="chroma-doc-section">
                     <h3>🤖 LLM Optimization Tips</h3>

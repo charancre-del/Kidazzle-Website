@@ -22,7 +22,7 @@ if (!$stats) {
                                 <div
                                         class="font-serif text-3xl font-bold <?php echo esc_attr($color_class); ?> group-hover:scale-110 transition-transform duration-300">
                                         <?php echo esc_html($stat['value']); ?></div>
-                                <div class="mt-1 text-[11px] uppercase tracking-[0.2em] text-brand-ink/80">
+                                <div class="mt-1 text-[11px] uppercase tracking-[0.2em] text-brand-ink">
                                         <?php echo esc_html($stat['label']); ?></div>
                         </div>
                 <?php endforeach; ?>

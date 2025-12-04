@@ -24,7 +24,7 @@ $grouped = $locations_data['grouped'] ?? array();
                 <?php echo esc_html($locations_data['heading'] ?: 'Our Locations'); ?>
             </h2>
             <?php if (!empty($locations_data['subheading'])): ?>
-                <p class="text-brand-ink/70 text-sm md:text-base max-w-2xl mx-auto">
+                <p class="text-brand-ink text-sm md:text-base max-w-2xl mx-auto">
                     <?php echo esc_html($locations_data['subheading']); ?>
                 </p>
             <?php endif; ?>
@@ -46,15 +46,17 @@ $grouped = $locations_data['grouped'] ?? array();
                     <?php
                     $region_label = $group['label'] ?? '';
                     $term_id = $group['term_id'] ?? 0;
-                    
+
                     // Get dynamic colors
                     $region_colors = chroma_get_region_color_from_term($term_id);
                     ?>
-                    <div class="bg-white border border-<?php echo esc_attr($region_colors['border']); ?>/10 rounded-3xl p-6 shadow-soft">
+                    <div
+                        class="bg-white border border-<?php echo esc_attr($region_colors['border']); ?>/10 rounded-3xl p-6 shadow-soft">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="text-xl"><?php echo esc_html(chroma_region_emoji($region_label)); ?></span>
-                            <h3 class="text-xs uppercase tracking-[0.18em] text-brand-ink/80 font-semibold">
-                                <?php echo esc_html($region_label); ?></h3>
+                            <h3 class="text-xs uppercase tracking-[0.18em] text-brand-ink font-semibold">
+                                <?php echo esc_html($region_label); ?>
+                            </h3>
                         </div>
                         <?php if (!empty($group['locations'])): ?>
                             <ul class="space-y-4">
@@ -82,13 +84,13 @@ $grouped = $locations_data['grouped'] ?? array();
                                                     </div>
                                                 <?php endif; ?>
                                                 <?php if ($address): ?>
-                                                    <p class="text-brand-ink/70 text-[11px] mt-2">
+                                                    <p class="text-brand-ink text-[11px] mt-2">
                                                         <i class="fas fa-map-marker-alt text-chroma-red mr-2"></i>
                                                         <?php echo esc_html($address); ?>
                                                     </p>
                                                 <?php endif; ?>
                                                 <?php if ($phone): ?>
-                                                    <p class="text-brand-ink/70 text-[11px] mt-1">
+                                                    <p class="text-brand-ink text-[11px] mt-1">
                                                         <i class="fas fa-phone text-chroma-yellow mr-2"></i>
                                                         <?php echo esc_html($phone); ?>
                                                     </p>

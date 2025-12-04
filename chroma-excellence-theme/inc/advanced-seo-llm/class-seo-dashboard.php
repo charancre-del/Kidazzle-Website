@@ -656,8 +656,14 @@ class Chroma_SEO_Dashboard
                     'data' => $legacy_data
                 ];
             }
+            // If still no schemas, try to load smart defaults based on post type
+            if (empty($existing_schemas)) {
+                $defaults = Chroma_Schema_Injector::get_default_schema_for_post_type($post_id);
+                if (!empty($defaults)) {
+                    $existing_schemas = $defaults;
+                }
+            }
         }
-
         $available_types = Chroma_Schema_Types::get_definitions();
 
         ob_start();
