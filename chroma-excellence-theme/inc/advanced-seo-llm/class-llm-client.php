@@ -14,11 +14,14 @@ if (!defined('ABSPATH')) {
 class Chroma_LLM_Client
 {
     private $api_key;
-    private $model = 'gpt-4o-mini'; // Default cost-effective model
+    private $model;
+    private $base_url;
 
     public function __construct()
     {
         $this->api_key = get_option('chroma_openai_api_key', '');
+        $this->model = get_option('chroma_llm_model', 'gpt-4o-mini');
+        $this->base_url = get_option('chroma_llm_base_url', 'https://api.openai.com/v1');
 
         // Register AJAX actions for saving key and testing connection
         add_action('wp_ajax_chroma_save_llm_settings', [$this, 'ajax_save_settings']);
@@ -33,29 +36,48 @@ class Chroma_LLM_Client
     public function render_settings()
     {
         $key = $this->api_key;
-        $masked_key = $key ? substr($key, 0, 3) . '...' . substr($key, -4) : '';
+        $model = $this->model;
+        $base_url = $this->base_url;
         ?>
         <div class="chroma-seo-card">
-            <h2>🤖 AI Integration (OpenAI)</h2>
-            <p>Connect to OpenAI to auto-generate schema and citation facts.</p>
+            <h2>🤖 AI Integration Settings</h2>
+            <p>Configure your LLM provider (OpenAI, OpenRouter, etc.).</p>
 
             <table class="form-table">
                 <tr>
-                    <th scope="row">OpenAI API Key</th>
+                    <th scope="row">API Key</th>
                     <td>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="password" id="chroma_openai_api_key" value="<?php echo esc_attr($key); ?>"
-                                class="regular-text" placeholder="sk-..." autocomplete="off">
-                            <button id="chroma-save-llm" class="button button-primary">Save Key</button>
-                        </div>
-                        <p class="description">Your key is stored securely. We recommend using a restricted key.</p>
+                        <input type="password" id="chroma_openai_api_key" value="<?php echo esc_attr($key); ?>"
+                            class="regular-text" placeholder="sk-..." autocomplete="off">
+                        <p class="description">Your key is stored securely.</p>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">Connection Status</th>
+                    <th scope="row">Model Name</th>
                     <td>
-                        <button id="chroma-test-llm" class="button button-secondary">Test Connection</button>
-                        <span id="chroma-llm-status" style="margin-left: 10px; font-weight: bold;"></span>
+                        <input type="text" id="chroma_llm_model" value="<?php echo esc_attr($model); ?>" class="regular-text"
+                            placeholder="gpt-4o-mini">
+                        <p class="description">e.g., <code>gpt-4o</code>, <code>claude-3-sonnet</code> (via OpenRouter),
+                            <code>llama-3</code></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Base URL</th>
+                    <td>
+                        <input type="text" id="chroma_llm_base_url" value="<?php echo esc_attr($base_url); ?>"
+                            class="regular-text" placeholder="https://api.openai.com/v1">
+                        <p class="description">Default: <code>https://api.openai.com/v1</code>. Change for OpenRouter/LocalAI.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Actions</th>
+                    <td>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="chroma-save-llm" class="button button-primary">Save Settings</button>
+                            <button id="chroma-test-llm" class="button button-secondary">Test Connection</button>
+                        </div>
+                        <span id="chroma-llm-status" style="display:block; margin-top: 10px; font-weight: bold;"></span>
                     </td>
                 </tr>
             </table>
@@ -63,7 +85,7 @@ class Chroma_LLM_Client
 
         <script>
             jQuery(document).ready(function ($) {
-                // Save Key
+                // Save Settings
                 $('#chroma-save-llm').on('click', function (e) {
                     e.preventDefault();
                     var btn = $(this);
@@ -71,13 +93,15 @@ class Chroma_LLM_Client
 
                     $.post(ajaxurl, {
                         action: 'chroma_save_llm_settings',
-                        api_key: $('#chroma_openai_api_key').val()
+                        api_key: $('#chroma_openai_api_key').val(),
+                        model: $('#chroma_llm_model').val(),
+                        base_url: $('#chroma_llm_base_url').val()
                     }, function (response) {
-                        btn.prop('disabled', false).text('Save Key');
+                        btn.prop('disabled', false).text('Save Settings');
                         if (response.success) {
-                            alert('API Key saved!');
+                            alert('Settings saved!');
                         } else {
-                            alert('Error saving key.');
+                            alert('Error saving settings.');
                         }
                     });
                 });
@@ -89,7 +113,7 @@ class Chroma_LLM_Client
                     var status = $('#chroma-llm-status');
 
                     btn.prop('disabled', true).text('Testing...');
-                    status.text('').removeClass('text-green-600 text-red-600');
+                    status.text('').css('color', 'inherit');
 
                     $.post(ajaxurl, {
                         action: 'chroma_test_llm_connection'
@@ -116,8 +140,18 @@ class Chroma_LLM_Client
             wp_send_json_error(['message' => 'Permission denied']);
         }
 
-        $key = sanitize_text_field($_POST['api_key']);
-        update_option('chroma_openai_api_key', $key);
+        if (isset($_POST['api_key'])) {
+            update_option('chroma_openai_api_key', sanitize_text_field($_POST['api_key']));
+        }
+        if (isset($_POST['model'])) {
+            update_option('chroma_llm_model', sanitize_text_field($_POST['model']));
+        }
+        if (isset($_POST['base_url'])) {
+            $url = esc_url_raw($_POST['base_url']);
+            // Remove trailing slash for consistency
+            $url = rtrim($url, '/');
+            update_option('chroma_llm_base_url', $url);
+        }
 
         wp_send_json_success();
     }
@@ -270,10 +304,12 @@ class Chroma_LLM_Client
      */
     private function make_request($data)
     {
-        $url = 'https://api.openai.com/v1/chat/completions';
+        // Use configured base URL or default
+        $base_url = $this->base_url ?: 'https://api.openai.com/v1';
+        $url = $base_url . '/chat/completions';
 
         $body = array_merge([
-            'model' => $this->model,
+            'model' => $this->model ?: 'gpt-4o-mini',
             'temperature' => 0.7,
         ], $data);
 

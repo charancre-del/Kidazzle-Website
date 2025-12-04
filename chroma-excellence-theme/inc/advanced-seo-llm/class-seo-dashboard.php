@@ -220,6 +220,13 @@ class Chroma_SEO_Dashboard
      */
     private function render_llm_tab()
     {
+        // Render Global Settings First
+        global $chroma_llm_client;
+        if (isset($chroma_llm_client) && method_exists($chroma_llm_client, 'render_settings')) {
+            $chroma_llm_client->render_settings();
+            echo '<hr style="margin: 30px 0; border: 0; border-top: 1px solid #ddd;">';
+        }
+
         // Get all posts for selector
         $locations = get_posts(['post_type' => 'location', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC']);
         $programs = get_posts(['post_type' => 'program', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC']);
