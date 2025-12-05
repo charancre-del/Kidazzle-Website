@@ -82,7 +82,7 @@
 				$cta_url = get_theme_mod('chroma_book_tour_url', home_url('/contact#tour'));
 				?>
 				<a href="<?php echo esc_url($cta_url); ?>"
-					class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-chroma-red text-white text-xs font-semibold uppercase tracking-widest hover:bg-chroma-red/90 transition shadow-soft">
+					class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-chroma-red text-white text-xs font-semibold uppercase tracking-widest hover:bg-chroma-red/90 transition shadow-soft whitespace-nowrap">
 					Schedule a Tour
 				</a>
 			</nav>
