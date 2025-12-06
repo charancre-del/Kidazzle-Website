@@ -5,6 +5,9 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php wp_title('|', true, 'right'); ?></title>
+	<!-- Tailwind CSS (CDN for immediate design fidelity) -->
+	<script src="https://cdn.tailwindcss.com"></script>
+
 	<?php wp_head(); ?>
 	<style>
 		.graph-bar {
